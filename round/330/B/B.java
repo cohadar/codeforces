@@ -6,8 +6,22 @@ public class B {
 
 	static final long PRIME = 1000000007;
 
+	static long divisible2(long a, long low, long high) {
+		long sum = 0;
+		for (long i = low; i <= high; i++) {
+			if (i % a == 0) {
+				sum++;
+			}
+		}
+		return sum;
+	}	
+
 	static long divisible(long a, long low, long high) {
-		return (high / a + 1) - ((low - 1) / a + 1);
+		if (low == 0) {
+			return (high / a + 1);
+		} else{
+			return (high / a + 1) - ((low - 1) / a + 1);
+		}
 	}
 
 	static long inblock(long k, long a, long b) {

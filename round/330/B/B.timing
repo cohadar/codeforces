@@ -5,4 +5,5 @@ FIRST: (.java)
 	18:07 - done code, small gives bad result.
 	18:10 - fixed, off-by-one bug, Time limit exceeded on pretest 6
 	18:22 - made it work fast in local, but it is still, Time limit exceeded on pretest 6 
-	18:50 - submitted
+	18:50 - submitted, Wrong answer on pretest 4!!!
+	19:00 - pretests pased! fucking off-by one errors.
