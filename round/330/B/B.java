@@ -6,23 +6,21 @@ public class B {
 
 	static final long PRIME = 1000000007;
 
+	static long divisible(long a, long low, long high) {
+		return (high / a + 1) - ((low - 1) / a + 1);
+	}
+
 	static long inblock(long k, long a, long b) {
 		long k9 = (long)Math.pow(10, k);
 		long k8 = (long)Math.pow(10, k - 1);
-		debug(k, k9, k8);
-		long sum = 0;
-		for (long i = 0; i < k9; i += a) {
-			if (i / k8 != b) {
-				sum++;
-			}
-		}
+		long sum = (k9 - 1) / a + 1;
+		long low = b * k8;
+		long high = ((b + 1) * k8 - 1);
+		sum -= divisible(a, low, high);
 		return sum;
 	}
 
 	static long solve(long k, long[] A, long[] B) {
-		debug(k);
-		debug(A);
-		debug(B);
 		long p = 1;
 		for (int i = 0; i < A.length; i++) {
 			p *= inblock(k, A[i], B[i]);
@@ -50,7 +48,7 @@ public class B {
 		return A;
 	}
 
-	static boolean DEBUG = false;
+	static boolean DEBUG = true;
 	
 	static void debug(Object...os) {
 		if (!DEBUG) { return; }
