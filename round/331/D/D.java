@@ -22,7 +22,7 @@ public class D {
 		if (l == r) {
 			return dl;
 		} 		
-		int ndl = Math.min(X[l + 1] - X[l], h);
+		int ndl = Math.min(X[l + 1] - X[l], dl);
 		return dl + solve(l + 1, r, ndl, dr);
 	}
 
@@ -30,7 +30,7 @@ public class D {
 		if (l == r) {
 			return dr;
 		} 
-		int ndr = Math.min(X[r] - X[r - 1], h);
+		int ndr = Math.min(X[r] - X[r - 1], dr);
 		return dr + solve(l, r - 1, dl, ndr);
 	}
 
@@ -39,7 +39,7 @@ public class D {
 			return dr;
 		} 		
 		if (X[l + 1] - X[l] >= h) {
-			int ndl = Math.min(X[l + 1] - (X[l] + h), h);
+			int ndl = Math.min(X[l + 1] - (X[l] + h), dr);
 			return solve(l + 1, r, ndl, dr);
 		}
 		return X[l + 1] - X[l] + qlpr(l + 1, r, 0, dr);
@@ -50,7 +50,7 @@ public class D {
 			return dl;
 		} 		
 		if (X[r] - X[r - 1] >= h) {
-			int ndr = Math.min(X[r] - X[r - 1], h);
+			int ndr = Math.min(X[r] - (X[r - 1] + h), dl);
 			return solve(l, r - 1, dl, ndr);
 		}
 		return X[r] - X[r - 1] + qrpl(l, r - 1, dl, 0);
@@ -59,7 +59,7 @@ public class D {
 	public double solve(int l, int r, int dl, int dr) {
 		if (l == r) {
 			return pl * dl + pr * dr;
-		} 
+		}
 		double ret = 0.0;
 		ret += ql * pl * qlpl(l, r, dl, dr);
 		ret += qr * pr * qrpr(l, r, dl, dr);
