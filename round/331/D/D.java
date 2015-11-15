@@ -18,42 +18,42 @@ public class D {
 		this.X = X;
 	}
 
-	double qlpl(int l, int r, int dl, int dr) {
+	double ll(int l, int r, int dl, int dr) {
 		if (l == r) {
 			return dl;
 		} 		
-		int ndl = Math.min(X[l + 1] - X[l], dl);
-		return dl + solve(l + 1, r, ndl, dr);
+		int ndl = Math.min(X[l + 1] - X[l], h);
+		return dl + solve(l + 1, r, ndl, dr); 
 	}
 
-	double qrpr(int l, int r, int dl, int dr) {
+	double rr(int l, int r, int dl, int dr) {
 		if (l == r) {
 			return dr;
 		} 
-		int ndr = Math.min(X[r] - X[r - 1], dr);
+		int ndr = Math.min(X[r] - X[r - 1], h);
 		return dr + solve(l, r - 1, dl, ndr);
 	}
 
-	double qlpr(int l, int r, int dl, int dr) {
+	double lr(int l, int r, int dl, int dr) {
 		if (l == r) {
 			return dr;
 		} 		
 		if (X[l + 1] - X[l] >= h) {
-			int ndl = Math.min(X[l + 1] - (X[l] + h), dr);
-			return solve(l + 1, r, ndl, dr);
+			int ndl = Math.min(X[l + 1] - (X[l] + h), h);
+			return h + solve(l + 1, r, ndl, dr);
 		}
-		return X[l + 1] - X[l] + qlpr(l + 1, r, 0, dr);
+		return X[l + 1] - X[l] + lr(l + 1, r, 0, dr);
 	}
 
-	double qrpl(int l, int r, int dl, int dr) {
+	double rl(int l, int r, int dl, int dr) {
 		if (l == r) {
 			return dl;
 		} 		
 		if (X[r] - X[r - 1] >= h) {
-			int ndr = Math.min(X[r] - (X[r - 1] + h), dl);
-			return solve(l, r - 1, dl, ndr);
+			int ndr = Math.min(h, X[r] - h - X[r - 1]);
+			return h + solve(l, r - 1, dl, ndr);
 		}
-		return X[r] - X[r - 1] + qrpl(l, r - 1, dl, 0);
+		return X[r] - X[r - 1] + rl(l, r - 1, dl, 0);
 	}	
 
 	public double solve(int l, int r, int dl, int dr) {
@@ -61,10 +61,10 @@ public class D {
 			return pl * dl + pr * dr;
 		}
 		double ret = 0.0;
-		ret += ql * pl * qlpl(l, r, dl, dr);
-		ret += qr * pr * qrpr(l, r, dl, dr);
-		ret += ql * pr * qlpr(l, r, dl, dr);
-		ret += qr * pl * qrpl(l, r, dl, dr);
+		ret += ql * pl * ll(l, r, dl, dr);
+		ret += qr * pr * rr(l, r, dl, dr);
+		ret += ql * pr * lr(l, r, dl, dr);
+		ret += qr * pl * rl(l, r, dl, dr);
 		return ret;
 	}
 
