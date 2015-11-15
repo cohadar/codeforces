@@ -10,3 +10,4 @@ FIRST: (.java)
 	-----
 	21:21 - long debugging and testing does not help, you need to break things with your mind first anyways.
 	21:43 - Time limit exceeded on test 11 (much better, correct recursive solution, with pure brain)
+	22:09 - made random big of size 10 (result: 35.99978)
