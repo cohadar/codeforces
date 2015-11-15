@@ -4,6 +4,11 @@ import java.io.*;
 /* Mighty Cohadar */
 public class D {
 
+	static final int LL = 0;
+	static final int RR = 1;
+	static final int LR = 2;
+	static final int RL = 3;
+
 	final int h;
 	final float pl;
 	final float pr;
@@ -18,11 +23,11 @@ public class D {
 		this.pl = p;
 		this.pr = 1.0f - p;
 		this.X = X;
-		this.mem = new float[X.length][X.length][16];
+		this.mem = new float[X.length][X.length][12];
 	}
 
 	float ll(int l, int r, int dl, int dr) {
-		int i = index(0, dl, dr);
+		int i = index(dl, dr); // 0123
 		if (mem[l][r][i] != 0) {
 			return mem[l][r][i];
 		}		
@@ -39,7 +44,7 @@ public class D {
 	}
 
 	float rr(int l, int r, int dl, int dr) {
-		int i = index(1, dl, dr);
+		int i = 4 + index(dl, dr); // 4567
 		if (mem[l][r][i] != 0) {
 			return mem[l][r][i];
 		}	
@@ -56,7 +61,7 @@ public class D {
 	}
 
 	float lr(int l, int r, int dr) {
-		int i = index(2, 0, dr);
+		int i = (dr < h) ? 8 : 9; // 89
 		if (mem[l][r][i] != 0) {
 			return mem[l][r][i];
 		}	
@@ -75,7 +80,7 @@ public class D {
 	}
 
 	float rl(int l, int r, int dl) {
-		int i = index(3, dl, 0);
+		int i = (dl < h) ? 10 : 11; // AB
 		if (mem[l][r][i] != 0) {
 			return mem[l][r][i];
 		}	
@@ -93,18 +98,18 @@ public class D {
 		return ret;		
 	}	
 
-	int index(int phase, int dl, int dr) {
+	int index(int dl, int dr) {
 		if (dl < h) {
 			if (dr < h) {
-				return phase * 4 + 0;
+				return 0;
 			} else {
-				return phase * 4 + 1;
+				return 1;
 			}
 		} else {
 			if (dr < h) {
-				return phase * 4 + 2;
+				return 2;
 			} else {
-				return phase * 4 + 3;
+				return 3;
 			}
 		}
 	}

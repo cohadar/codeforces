@@ -16,3 +16,5 @@ FIRST: (.java)
 	22:41 - new double[2000][2000][4]; // takes 0.6s, much better.
 	22:43 - speed ok, but this time I got: Memory limit exceeded on test 11
 	22:51 - ok I fixed the mem limit, but now I got: Time limit exceeded on test 11
+	23:22 - used larger array to speed memoization, but got: Memory limit exceeded on test 11
+	23:54 - mem limit again.
