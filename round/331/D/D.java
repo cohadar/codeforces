@@ -5,66 +5,119 @@ import java.io.*;
 public class D {
 
 	final int h;
-	final double pl;
-	final double pr;
+	final float pl;
+	final float pr;
 	final int[] X;
-	final double ql = 0.5;
-	final double qr = 0.5;
+	final float ql = 0.5f;
+	final float qr = 0.5f;
+	final float[][][] mem;
+	int count;
 
-	public D(int h, double p, int[] X) {
+	public D(int h, float p, int[] X) {
 		this.h = h;
 		this.pl = p;
-		this.pr = 1.0 - p;
+		this.pr = 1.0f - p;
 		this.X = X;
+		this.mem = new float[X.length][X.length][16];
 	}
 
-	double ll(int l, int r, int dl, int dr) {
+	float ll(int l, int r, int dl, int dr) {
+		int i = index(0, dl, dr);
+		if (mem[l][r][i] != 0) {
+			return mem[l][r][i];
+		}		
+		count++;
+		float ret;	
 		if (l == r) {
-			return dl;
-		} 		
-		int ndl = Math.min(X[l + 1] - X[l], h);
-		return dl + solve(l + 1, r, ndl, dr); 
+			ret = dl;
+		} else {		
+			int ndl = Math.min(X[l + 1] - X[l], h);
+			ret = dl + solve(l + 1, r, ndl, dr); 
+		}
+		mem[l][r][i] = ret;
+		return ret;
 	}
 
-	double rr(int l, int r, int dl, int dr) {
+	float rr(int l, int r, int dl, int dr) {
+		int i = index(1, dl, dr);
+		if (mem[l][r][i] != 0) {
+			return mem[l][r][i];
+		}	
+		count++;
+		float ret;
 		if (l == r) {
-			return dr;
-		} 
-		int ndr = Math.min(X[r] - X[r - 1], h);
-		return dr + solve(l, r - 1, dl, ndr);
+			ret = dr;
+		} else { 
+			int ndr = Math.min(X[r] - X[r - 1], h);
+			ret = dr + solve(l, r - 1, dl, ndr);
+		}
+		mem[l][r][i] = ret;
+		return ret;
 	}
 
-	double lr(int l, int r, int dl, int dr) {
+	float lr(int l, int r, int dr) {
+		int i = index(2, 0, dr);
+		if (mem[l][r][i] != 0) {
+			return mem[l][r][i];
+		}	
+		count++;
+		float ret;
 		if (l == r) {
-			return dr;
-		} 		
-		if (X[l + 1] - X[l] >= h) {
+			ret = dr;
+		} else if (X[l + 1] - X[l] >= h) {
 			int ndl = Math.min(X[l + 1] - (X[l] + h), h);
-			return h + solve(l + 1, r, ndl, dr);
+			ret = h + solve(l + 1, r, ndl, dr);
+		} else {
+			ret = X[l + 1] - X[l] + lr(l + 1, r, dr);
 		}
-		return X[l + 1] - X[l] + lr(l + 1, r, 0, dr);
+		mem[l][r][i] = ret;
+		return ret;		
 	}
 
-	double rl(int l, int r, int dl, int dr) {
+	float rl(int l, int r, int dl) {
+		int i = index(3, dl, 0);
+		if (mem[l][r][i] != 0) {
+			return mem[l][r][i];
+		}	
+		count++;
+		float ret;
 		if (l == r) {
-			return dl;
-		} 		
-		if (X[r] - X[r - 1] >= h) {
+			ret = dl;
+		} else if (X[r] - X[r - 1] >= h) {
 			int ndr = Math.min(h, X[r] - h - X[r - 1]);
-			return h + solve(l, r - 1, dl, ndr);
+			ret = h + solve(l, r - 1, dl, ndr);
+		} else {
+			ret = X[r] - X[r - 1] + rl(l, r - 1, dl);
 		}
-		return X[r] - X[r - 1] + rl(l, r - 1, dl, 0);
+		mem[l][r][i] = ret;
+		return ret;		
 	}	
 
-	public double solve(int l, int r, int dl, int dr) {
+	int index(int phase, int dl, int dr) {
+		if (dl < h) {
+			if (dr < h) {
+				return phase * 4 + 0;
+			} else {
+				return phase * 4 + 1;
+			}
+		} else {
+			if (dr < h) {
+				return phase * 4 + 2;
+			} else {
+				return phase * 4 + 3;
+			}
+		}
+	}
+
+	public float solve(int l, int r, int dl, int dr) {
 		if (l == r) {
 			return pl * dl + pr * dr;
-		}
-		double ret = 0.0;
+		}			
+		float ret = 0.0f;
 		ret += ql * pl * ll(l, r, dl, dr);
 		ret += qr * pr * rr(l, r, dl, dr);
-		ret += ql * pr * lr(l, r, dl, dr);
-		ret += qr * pl * rl(l, r, dl, dr);
+		ret += ql * pr * lr(l, r, dr);
+		ret += qr * pl * rl(l, r, dl);
 		return ret;
 	}
 
@@ -72,11 +125,12 @@ public class D {
 		Scanner scanner = new Scanner(System.in);
 		int n = scanner.nextInt();
 		int h = scanner.nextInt();
-		double p = scanner.nextDouble();
+		float p = scanner.nextFloat();
 		int[] X = scanArray(scanner, n);
 		Arrays.sort(X);
 		D o = new D(h, p, X);
 		System.out.println(o.solve(0, n - 1, h, h));
+		System.err.println(o.count);
 	}
 
 	static int[] scanArray(Scanner scanner, int n) {
