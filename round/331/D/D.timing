@@ -19,3 +19,5 @@ FIRST: (.java)
 	23:22 - used larger array to speed memoization, but got: Memory limit exceeded on test 11
 	23:54 - mem limit again.
 	00:07 - time limit.
+	00:24 - mem limit, but improved, put shorter array index first.
+	00:44 - memoization gave me bad matrix size, will try with later with dp.
