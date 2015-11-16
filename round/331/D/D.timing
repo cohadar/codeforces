@@ -28,3 +28,4 @@ FIRST: (.java)
 	07:23 - ofc, with double: Memory limit exceeded on test 11
 	07:48 - the trick is to use 2 dp matrices.
 	09:40 - remaining length based dp index was definitely a bad idea.
+	10:04 - made dp work with boolean indices.
