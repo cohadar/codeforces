@@ -4,69 +4,67 @@ import java.io.*;
 /* Mighty Cohadar */
 public class D {
 
-	static final int LL = 0;
-	static final int RR = 1;
-	static final int LR = 2;
-	static final int RL = 3;
-
 	final int h;
-	final float pl;
-	final float pr;
+	final double pl;
+	final double pr;
 	final int[] X;
-	final float ql = 0.5f;
-	final float qr = 0.5f;
-	final float[][][] mem;
+	final double ql = 0.5f;
+	final double qr = 0.5f;
+	final double[][] mem;
 	int count;
 
-	public D(int h, float p, int[] X) {
+	public D(int h, double p, int[] X) {
 		this.h = h;
 		this.pl = p;
 		this.pr = 1.0f - p;
 		this.X = X;
-		this.mem = new float[12][X.length][X.length];
+		this.mem = new double[12][X.length * (X.length + 1) / 2];
 	}
 
-	float ll(int l, int r, int dl, int dr) {
+	double ll(int l, int r, int dl, int dr) {
 		int i = index(dl, dr); // 0123
-		if (mem[i][l][r] != 0) {
-			return mem[i][l][r];
+		int j = triangl(l, r);
+		if (mem[i][j] != 0) {
+			return mem[i][j];
 		}
 		count++;
-		float ret;
+		double ret;
 		if (l == r) {
 			ret = dl;
 		} else {
 			int ndl = Math.min(X[l + 1] - X[l], h);
 			ret = dl + solve(l + 1, r, ndl, dr);
 		}
-		mem[i][l][r] = ret;
+		mem[i][j] = ret;
 		return ret;
 	}
 
-	float rr(int l, int r, int dl, int dr) {
+	double rr(int l, int r, int dl, int dr) {
 		int i = 4 + index(dl, dr); // 4567
-		if (mem[i][l][r] != 0) {
-			return mem[i][l][r];
+		int j = triangl(l, r);
+		if (mem[i][j] != 0) {
+			return mem[i][j];
 		}
 		count++;
-		float ret;
+		double ret;
 		if (l == r) {
 			ret = dr;
 		} else {
 			int ndr = Math.min(X[r] - X[r - 1], h);
 			ret = dr + solve(l, r - 1, dl, ndr);
 		}
-		mem[i][l][r] = ret;
+		mem[i][j] = ret;
 		return ret;
 	}
 
-	float lr(int l, int r, int dr) {
+	double lr(int l, int r, int dr) {
 		int i = (dr < h) ? 8 : 9; // 89
-		if (mem[i][l][r] != 0) {
-			return mem[i][l][r];
+		int j = triangl(l, r);
+		if (mem[i][j] != 0) {
+			return mem[i][j];
 		}
 		count++;
-		float ret;
+		double ret;
 		if (l == r) {
 			ret = dr;
 		} else if (X[l + 1] - X[l] >= h) {
@@ -75,17 +73,18 @@ public class D {
 		} else {
 			ret = X[l + 1] - X[l] + lr(l + 1, r, dr);
 		}
-		mem[i][l][r] = ret;
+		mem[i][j] = ret;
 		return ret;
 	}
 
-	float rl(int l, int r, int dl) {
+	double rl(int l, int r, int dl) {
 		int i = (dl < h) ? 10 : 11; // AB
-		if (mem[i][l][r] != 0) {
-			return mem[i][l][r];
+		int j = triangl(l, r);
+		if (mem[i][j] != 0) {
+			return mem[i][j];
 		}
 		count++;
-		float ret;
+		double ret;
 		if (l == r) {
 			ret = dl;
 		} else if (X[r] - X[r - 1] >= h) {
@@ -94,7 +93,7 @@ public class D {
 		} else {
 			ret = X[r] - X[r - 1] + rl(l, r - 1, dl);
 		}
-		mem[i][l][r] = ret;
+		mem[i][j] = ret;
 		return ret;
 	}
 
@@ -114,11 +113,16 @@ public class D {
 		}
 	}
 
-	public float solve(int l, int r, int dl, int dr) {
+	int triangl(int l, int r) {
+		assert l <= r;
+		return r * (r + 1) / 2 + l;
+	}
+
+	public double solve(int l, int r, int dl, int dr) {
 		if (l == r) {
 			return pl * dl + pr * dr;
 		}
-		float ret = 0.0f;
+		double ret = 0.0f;
 		ret += ql * pl * ll(l, r, dl, dr);
 		ret += qr * pr * rr(l, r, dl, dr);
 		ret += ql * pr * lr(l, r, dr);
@@ -130,7 +134,7 @@ public class D {
 		Scanner scanner = new Scanner(System.in);
 		int n = scanner.nextInt();
 		int h = scanner.nextInt();
-		float p = scanner.nextFloat();
+		double p = scanner.nextDouble();
 		int[] X = scanArray(scanner, n);
 		Arrays.sort(X);
 		D o = new D(h, p, X);

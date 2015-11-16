@@ -21,3 +21,7 @@ FIRST: (.java)
 	00:07 - time limit.
 	00:24 - mem limit, but improved, put shorter array index first.
 	00:44 - memoization gave me bad matrix size, will try with later with dp.
+	-----
+	07:06 - let's try diagonal matrix packing for the sake of exercise
+	07:12 - Wrong answer on test 11, very interesting. (could be because float vs double precision)
+	07:23 - ofc, with double: Memory limit exceeded on test 11
