@@ -75,8 +75,12 @@ public class D {
 		if (l == r) {
 			return dr;
 		} 
-		int delta = zez[FR][l];
-		return (X[l + delta] - X[l]) + h + solve(l + 1 + delta, r, ndl(l + delta), dr);			
+		// if (X[l + 1] - X[l] < h) {
+		// 	return X[l + 1] - X[l] + lr(l + 1, r, dr);
+		// }
+		// return h + solve(l + 1, r, ndl(l), dr);
+		int delta = Math.min(zez[FR][l], r - l);
+		return (X[l + delta] - X[l]) + ((delta > 0) ? h : 0) + solve(l + 1 + delta, r, ndl(l + delta), dr);			
 	}
 
 	double rl(int l, int r, int dl) {
@@ -85,8 +89,12 @@ public class D {
 		if (l == r) {
 			return dl;
 		}
-		int delta = zez[FL][r];
-		return (X[r] - X[r - delta]) + h + solve(l, r - 1 - delta, dl, ndr(r - delta));
+		if (X[r] - X[r - 1] < h) {
+			return X[r] - X[r - 1] + rl(l, r - 1, dl);
+		}
+		return h + solve(l, r - 1, dl, ndr(r));
+		// int delta = zez[FL][r];
+		// return (X[r] - X[r - delta]) + h + solve(l, r - 1 - delta, dl, ndr(r - delta));
 	}
 
 	int index(int dl, int dr) {
