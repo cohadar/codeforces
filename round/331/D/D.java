@@ -26,78 +26,72 @@ public class D {
 		this.zez = new int[2][X.length];
 		Arrays.sort(this.X);		
 		// FL
-		zez[FL][0] = 1;
 		for (int i = 1; i < X.length; i++) {
 			if (X[i] - X[i - 1] < h) {
 				zez[FL][i] = zez[FL][i - 1] + 1;
-			} else {
-				zez[FL][i] = 1;
 			}
 		}
 		// FR
-		zez[FR][X.length - 1] = 1;
 		for (int i = X.length - 2; i >= 0; i--) {
 			if (X[i + 1] - X[i] < h) {
 				zez[FR][i] = zez[FR][i + 1] + 1;
-			} else {
-				zez[FR][i] = 1;				
 			}
 		}
 	}
 
 	double ll(int l, int r, int dl, int dr) {
+		assert l <= r;
 		count++;
 		double ret;
 		if (l == r) {
-			ret = dl;
-		} else {
-			int ndl = Math.min(X[l + 1] - X[l], h);
-			ret = dl + solve(l + 1, r, ndl, dr);
+			return dl;
 		}
-		return ret;
+		int ndl = Math.min(X[l + 1] - X[l], h);
+		return dl + solve(l + 1, r, ndl, dr);
 	}
 
 	double rr(int l, int r, int dl, int dr) {
+		assert l <= r;
 		count++;
 		double ret;
 		if (l == r) {
-			ret = dr;
-		} else {
-			int ndr = Math.min(X[r] - X[r - 1], h);
-			ret = dr + solve(l, r - 1, dl, ndr);
+			return dr;
 		}
-		return ret;
+		int ndr = Math.min(X[r] - X[r - 1], h);
+		return dr + solve(l, r - 1, dl, ndr);
+	}
+
+	int ndl(int l) {
+		return Math.min(X[l + 1] - (X[l] + h), h);
+	}
+
+	int ndr(int r) {
+		return Math.min(X[r] - (X[r - 1] + h), h);
 	}
 
 	double lr(int l, int r, int dr) {
+		assert l <= r;
 		count++;
-		double ret;
 		if (l == r) {
-			ret = dr;
-		} else if (X[l + 1] - X[l] >= h) {
-			int ndl = Math.min(X[l + 1] - (X[l] + h), h);
-			ret = h + solve(l + 1, r, ndl, dr);
-		} else {
-			ret = X[l + 1] - X[l] + lr(l + 1, r, dr);
-		}
-		return ret;
+			return dr;
+		} 
+		int delta = zez[FR][l];
+		return (X[l + delta] - X[l]) + h + solve(l + 1 + delta, r, ndl(l + delta), dr);			
 	}
 
 	double rl(int l, int r, int dl) {
+		assert l <= r;
 		count++;
-		double ret;
 		if (l == r) {
-			ret = dl;
-		} else if (X[r] - X[r - 1] >= h) {
-			int ndr = Math.min(h, X[r] - h - X[r - 1]);
-			ret = h + solve(l, r - 1, dl, ndr);
-		} else {
-			ret = X[r] - X[r - 1] + rl(l, r - 1, dl);
+			return dl;
 		}
-		return ret;
+		int delta = zez[FL][r];
+		return (X[r] - X[r - delta]) + h + solve(l, r - 1 - delta, dl, ndr(r - delta));
 	}
 
 	int index(int dl, int dr) {
+		assert dl <= h;
+		assert dr <= h;
 		if (dl < h) {
 			if (dr < h) {
 				return 0;
@@ -119,20 +113,21 @@ public class D {
 	}
 
 	public double solve(int l, int r, int dl, int dr) {
+		if (l > r) {
+			return 0;
+		}
 		int i = index(dl, dr); 
 		int j = triangl(l, r);
 		if (mem[i][j] != 0) {
 			return mem[i][j];
 		}		
-		if (l == r) {
-			return pl * dl + pr * dr;
-		}
 		double ret = 0.0f;
 		ret += ql * pl * ll(l, r, dl, dr);
 		ret += qr * pr * rr(l, r, dl, dr);
 		ret += ql * pr * lr(l, r, dr);
 		ret += qr * pl * rl(l, r, dl);
 		mem[i][j] = ret;
+		debug(l, r, dl, dr, "->", ret);
 		return ret;
 	}
 
@@ -143,16 +138,27 @@ public class D {
 		double p = scanner.nextDouble();
 		int[] X = scanArray(scanner, n);
 		D o = new D(h, p, X);
-		System.out.println(o.solve(0, n - 1, h, h));
-		System.err.println(o.count);
+		System.out.println(o.solve(1, n, h, h));
+		debug(o.count);
 	}
 
+	static final int INF = 1000000007;
+
 	static int[] scanArray(Scanner scanner, int n) {
-		int[] A = new int[n];
+		int[] A = new int[n + 2];
+		A[0] = INF;
+		A[1] = -INF;
 		for (int i = 0; i < n; i++) {
-			A[i] = scanner.nextInt();
+			A[2 + i] = scanner.nextInt();
 		}
 		return A;
+	}
+
+	static boolean DEBUG = true;
+
+	static void debug(Object...os) {
+		if (!DEBUG) { return; }
+		System.err.printf("%.65536s\n", Arrays.deepToString(os));
 	}
 
 }
