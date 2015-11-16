@@ -29,3 +29,6 @@ FIRST: (.java)
 	07:48 - the trick is to use 2 dp matrices.
 	09:40 - remaining length based dp index was definitely a bad idea.
 	10:04 - made dp work with boolean indices.
+	10:09 - Wrong answer on test 4
+	10:22 - Wrong answer on test 4
+	11:02 - still wrong.
