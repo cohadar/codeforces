@@ -1,0 +1,12 @@
+## A
+FIRST: (.java)
+	03:08 - done reading, no paper
+	09:25 - examp pass
+	10:06 - wrong on test 1
+	11:30 - examp was wrong, I forgot 1 is 0-th power of a number, check examps better!
+	13:08 - Wrong answer on test 24
+	15:59 - Wrong answer on test 24
+	26:24 - accepted a biginteger implementation, no idea why previous one was wrong!
+	35:00 - Java8: Math.multiplyExact i also a good idea!
+	45:48 - Java7: if (p > Long.MAX_VALUE / k) {
+	
