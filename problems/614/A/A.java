@@ -17,9 +17,9 @@ public class A {
 				sb.append(' ');
 			}
 			long prev = p;
-			try {
-				p = Math.multiplyExact(p, k);
-			} catch (ArithmeticException e) {
+			p *= k;
+			if (p / k != prev) {
+				// mul not reversible == overflow
 				break;
 			}
 			if (p > r) {

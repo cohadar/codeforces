@@ -9,4 +9,4 @@ FIRST: (.java)
 	26:24 - accepted a biginteger implementation, no idea why previous one was wrong!
 	35:00 - Java8: Math.multiplyExact i also a good idea!
 	45:48 - Java7: if (p > Long.MAX_VALUE / k) {
-	
+	xx:xx - if mul not reversible (p / k != prev) than it is overflow!
