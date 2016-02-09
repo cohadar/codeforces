@@ -1,0 +1,1 @@
+http://codeforces.com/problemset/status/607/problem/A     | DP is simpler if you invert min to max

@@ -1,0 +1,6 @@
+## A
+FIRST: (.java)
+	14:43 - done paper
+	27:08 - examp pass, slow version
+	31:30 - accepted
+	instead of DP + FenwickTree a simple DP is enough if you calculate max to survive instead of min to be destroyed!
