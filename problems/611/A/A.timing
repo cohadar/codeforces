@@ -1,0 +1,11 @@
+## A
+FIRST: (.java)
+	02:15 - done reading
+	05:59 - done paper
+	09:45 - done input
+	20:36 - examp pass
+	21:10 - wrong on test 9
+	33:43 - I don't see how my solution can be wrong, I am using default java Calendar class.
+	48:09 - forgot that java calendar thinks Sunday is the first day of week, while problem sad Monday was.
+	accepted
+	note: almost all solutions by other people used explicit numbers instead of java calendar.
