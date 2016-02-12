@@ -1,1 +1,2 @@
 http://codeforces.com/problemset/status/607/problem/A     | DP is simpler if you invert min to max
+http://codeforces.com/problemset/problem/597/A            | great interview question
