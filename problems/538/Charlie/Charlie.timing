@@ -3,4 +3,8 @@ FIRST: (.java)
 	02:56 - done reading
 	26:09 - done paper
 	38:36 - examp pass
-	accepted
+		Wrong answer on test 4
+	05:50 - again
+		Wrong answer on test 4
+	12:04 - it was off by one error because I did not notice D input is 1-based
+		accepted
