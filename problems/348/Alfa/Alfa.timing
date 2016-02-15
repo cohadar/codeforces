@@ -1,0 +1,12 @@
+## Alfa
+FIRST: (.java)
+	01:24 - done reading
+	07:23 - done paper
+	12:33 - examp fail
+	27:33 - better paper 
+	45:30 - lol I used a TreeSet a SET for an array problem, moron.
+	48:31 - examp pass, hope for amortized time of Arrays.sort
+		Time limit exceeded on test 8
+	58:19 - insertion sort instead of Arrays.sort
+		Time limit exceeded on test 12
+	59:59 - FAIL
