@@ -1,0 +1,18 @@
+## Charlie
+FIRST: (.java)
+	02:20 - done reading
+	13:10 - done paper
+	19:49 - better paper
+	24:39 - examp fail
+	25:56 - examp pass
+		Time limit exceeded on test 7
+	50:04 - FenwickTree examp pass
+		Wrong answer on test 7
+		need long instead of int in FT
+	59:59 - FAIL
+	02:53 - special for k = 1
+		Wrong answer on test 7
+	04:26 - int/long fix
+		Wrong answer on test 15
+	14:28 - removed FT, simple cumulative counts are enough
+		Time limit exceeded on test 39
