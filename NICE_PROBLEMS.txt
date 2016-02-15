@@ -3,3 +3,4 @@ http://codeforces.com/problemset/problem/597/A            | great interview ques
 http://codeforces.com/problemset/problem/474/B            | binarySearch - highBound
 http://codeforces.com/problemset/problem/538/C            | index/range manipulation
 http://codeforces.com/problemset/problem/274/A            | nice solution if you are smart, ugly if you are stupid
+http://codeforces.com/problemset/problem/513/A            | nice solution if you are smart, ugly if you are stupid
