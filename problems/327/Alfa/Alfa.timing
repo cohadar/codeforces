@@ -1,0 +1,9 @@
+## Alfa
+FIRST: (.java)
+	03:12 - done reading, this problem is not really dp with specified small input so I will extends n to 1e5
+	11:55 - done paper
+	20:22 - examp fail
+	26:17 - examp pass, make sure arrays/states transitions are in NEXT iteration
+		Wrong answer on test 3 - forgot that transitions is a must (exactly one move)
+	46:57 - it is all about init conditions and special case one
+		accepted
