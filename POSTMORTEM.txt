@@ -1,0 +1,4 @@
+2016-02-20 | Round #343 | http://codeforces.com/contest/629
+	Failed because I did not finalize paper on both C and D.
+	Also D was better for me than C, so I should have done them out of order!
+	
