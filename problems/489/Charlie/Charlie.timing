@@ -3,3 +3,12 @@ FIRST: (.java)
 	00:48 - done reading
 	40:24 - done paper
 	59:59 - FAILED
+	00:41 - done reading
+	07:45 - done paper
+	14:47 - examp fail
+	19:11 - examp pass
+		Wrong answer on test 8
+	21:52 - special case
+		Wrong answer on test 8
+	23:06 - forgot return
+		accepted
