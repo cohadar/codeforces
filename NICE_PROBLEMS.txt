@@ -2,7 +2,8 @@ http://codeforces.com/problemset/status/607/problem/A     | DP is simpler if you
 http://codeforces.com/problemset/problem/597/A            | great interview question
 http://codeforces.com/problemset/problem/474/B            | binarySearch - highBound
 http://codeforces.com/problemset/problem/538/C            | index/range manipulation
-http://codeforces.com/problemset/problem/274/A            | nice solution if you are smart, ugly if you are stupid
-http://codeforces.com/problemset/problem/513/A            | nice solution if you are smart, ugly if you are stupid
+http://codeforces.com/problemset/problem/274/A            | smarter is simpler
+http://codeforces.com/problemset/problem/513/A            | smarter is simpler
 http://codeforces.com/problemset/problem/520/C            | nice solution, hard insights
 http://codeforces.com/problemset/problem/455/A            | radix + max trick
+http://codeforces.com/problemset/problem/476/B            | smarter is simpler
