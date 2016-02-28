@@ -2,7 +2,6 @@
 2016-02-08 | http://codeforces.com/contest/613/problem/A
 2016-02-09 | http://codeforces.com/problemset/problem/606/A  | great example of "imagined" constraints destroying your strategy
 2016-02-10 | http://codeforces.com/problemset/problem/605/A
-2016-02-14 | http://codeforces.com/problemset/problem/466/C
 2016-02-15 | http://codeforces.com/problemset/problem/567/C
 2016-02-15 | http://codeforces.com/problemset/problem/348/A
 2016-02-18 | http://codeforces.com/problemset/problem/446/A

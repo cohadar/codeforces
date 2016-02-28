@@ -7,3 +7,11 @@ FIRST: (.java)
 	20:13 - max large 1.2s
 	Time limit exceeded on test 6
 	59:59 - FAIL
+	02:18 - done reading
+	17:43 - done paper
+	28:27 - examp pass
+		Wrong answer on test 6
+	32:42 - examp pass	
+		Wrong answer on test 6
+	55:41 - stupid off by one array bugs
+		accepted
