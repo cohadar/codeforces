@@ -1,0 +1,9 @@
+## Charlie
+FIRST: (.java)
+	02:42 - done reading
+	36:30 - done paper
+	44:24 - done input
+	54:50 - examp fail
+	59:59 - FAILED
+		should have used debug function to verify intermediate steps of algorithm.
+		also had some off-by-one problems
