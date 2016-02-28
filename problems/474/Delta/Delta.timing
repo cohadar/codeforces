@@ -1,0 +1,13 @@
+## Delta
+FIRST: (.java)
+	01:39 - done reading
+	10:23 - done paper
+	19:12 - examp fail
+	30:15 - paper was wrong, didn't to paper testing
+	38:41 - examp pass, it was all in base conditions
+	41:05 - examp pass, base trick
+		Wrong answer on test 3
+	44:44 - when doing cumul substraction with modulo watch for negative values and add PRIME.
+		accepted
+	xx:xx - using only one DP array
+		accepted
