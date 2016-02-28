@@ -7,4 +7,4 @@ http://codeforces.com/problemset/problem/513/A            | smarter is simpler
 http://codeforces.com/problemset/problem/520/C            | nice solution, hard insights
 http://codeforces.com/problemset/problem/455/A            | radix + max trick
 http://codeforces.com/problemset/problem/476/B            | smarter is simpler
-http://codeforces.com/problemset/problem/466/C            | need to be careful with ranges
+http://codeforces.com/problemset/problem/466/C            | need to be careful with ranges + smarter is simpler
