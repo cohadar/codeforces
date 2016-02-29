@@ -11,11 +11,21 @@ public class Bravo {
 	final int n;
 	final int k;
 	final long[][] D;
+	final List<Integer>[] A;
 	
 	public Bravo(int n, int k) {
 		this.n = n;
 		this.k = k;
 		this.D = new long[k][1 + n];
+		this.A = new List[1 + n];
+		for (int b = 1; b < A.length; b++) {
+			A[b] = new ArrayList<>();
+			for (int a = 1; a <= b; a++) {
+				if (b % a == 0) {
+					A[b].add(a);
+				}
+			}
+		}
 	}
 
 	static long sum(long[] A, int l, int r) {
@@ -28,10 +38,8 @@ public class Bravo {
 
 	public long solve(int ik, int b) {
 		long sum = 0;
-		for (int a = 1; a <= b; a++) {
-			if (b % a == 0) {
-				sum += D[ik - 1][a];
-			}
+		for (int a : A[b]) {
+			sum += D[ik - 1][a];
 		}
 		return sum;
 	}

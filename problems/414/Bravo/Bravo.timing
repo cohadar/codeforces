@@ -3,3 +3,10 @@ FIRST: (.java)
 	03:00 - done reading
 	13:26 - done paper
 	26:10 - examp pass, but unoptimal
+	34:06 - examp pass optimal
+		accepted
+
+	Paper was correct but I failed to see that paper algo was O(n^3) and I needed O(n^2).
+	My solution was not the-best-possible.
+	It can be improved by compressing the ik dimension.
+	A lists can be avoided if b traversal is reversed and a is generated with * instead of with % 
