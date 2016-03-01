@@ -38,4 +38,7 @@ FIRST: (.java)
 	The trick was not to allocate any base arrays but just cumul arrays.
 	Big memory allocation is really slow I guess.
 	Fastest solutions use custom reader so I guess I should have one of my own.
+
+	xx:xx - developed FastScanner
+	
 	
