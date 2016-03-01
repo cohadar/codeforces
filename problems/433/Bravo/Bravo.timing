@@ -1,0 +1,41 @@
+## Bravo
+FIRST: (.java)
+	02:20 - done reading & paper
+	10:56 - examp pass
+		Time limit exceeded on test 46
+	16:44 - examp pass
+		Time limit exceeded on test 46
+	20:58 - examp pass
+		Time limit exceeded on test 46
+
+	First try I unnecessarily used a SegmentTree.
+	Second try I used cumul arrays
+	Third try I realized problem was slow i/o, tried some rearranging but no success.
+
+	26:37 - examp pass
+		Time limit exceeded on test 46
+
+	I guess reading whole file in was not good enough.
+	Lets try nextLine instead of nextInt
+
+	37:22 - maximally optimized Scanner implementation with simultaneous output
+		Time limit exceeded on test 46
+
+	39:59 - only nextLine on input with simultaneous output
+		Time limit exceeded on test 4 (four not 46), lol
+
+	44:54 - buffered reader with simultaneous output	
+		Time limit exceeded on test 46	
+
+	hmmmm, all other people solutions use Scanner.nextInt ?? and pl ??
+
+	54:39 - merged for loops as much as possible, no helper functions.
+		Time limit exceeded on test 46
+
+	xx:xx - Accepted
+
+	I managed to do it with Scanner.nextInt
+	The trick was not to allocate any base arrays but just cumul arrays.
+	Big memory allocation is really slow I guess.
+	Fastest solutions use custom reader so I guess I should have one of my own.
+	

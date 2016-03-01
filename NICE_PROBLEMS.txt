@@ -8,3 +8,4 @@ http://codeforces.com/problemset/problem/520/C            | nice solution, hard 
 http://codeforces.com/problemset/problem/455/A            | radix + max trick
 http://codeforces.com/problemset/problem/476/B            | smarter is simpler
 http://codeforces.com/problemset/problem/466/C            | need to be careful with ranges + smarter is simpler
+http://codeforces.com/problemset/problem/433/B            | big input reading and array memory reuse
