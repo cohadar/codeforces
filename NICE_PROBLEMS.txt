@@ -10,3 +10,4 @@ http://codeforces.com/problemset/problem/476/B            | smarter is simpler
 http://codeforces.com/problemset/problem/466/C            | need to be careful with ranges + smarter is simpler
 http://codeforces.com/problemset/problem/433/B            | big input reading and array memory reuse
 http://codeforces.com/problemset/problem/534/B            | tricky DP with both start and end conditions
+http://codeforces.com/problemset/problem/467/C            | nice example of removing DP ifs with proper for bounds
