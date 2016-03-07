@@ -4,27 +4,60 @@ import java.io.*;
 /* Mighty Cohadar */
 public class Bravo {
 
+	final int n;
+	final int[] A;
+	int l;
+	int r;
+	int min;
+	int max;
+
+	public Bravo(int n, int[] A) {
+		this.n = n;
+		this.A = A;
+		this.min = A[0];
+		this.max = A[0];
+	}
+
+	public void goback() {
+		while (l > 0) {
+			if (A[l - 1] == min || A[l - 1] == max) {
+				l--;
+			} else if (min == max) {
+				if (Math.abs(A[l - 1] - min) <= 1) {
+					min = Math.min(min, A[l - 1]);
+					max = Math.max(max, A[l - 1]);
+				} else {
+					break;
+				}
+			} else {
+				break;
+			}
+		}
+	}
+
+	public int solve() {
+		int res = 1;
+		while (r < n - 1) {
+			r++;
+			if (A[r] != min && A[r] != max) {
+				l = r;
+				min = A[r];
+				max = A[r];
+				goback();
+			}
+			res = Math.max(res, r - l + 1);
+		}
+		return res;
+	}
+	
+
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		int n = scanner.nextInt();
 		assert 2 <= n && n <= 1e5 : "out of range, n: " + n;
 		int[] A = scanArray(scanner, n);
-		int res = 1;
-		int l = 0;
-		int r = 0;
-		int min = A[0];
-		int max = A[0];
-		while (r < n - 1) {
-			r++;
-			if (A[r] != min && A[r] != max) {
-				l = r;
-				while (l > 0 && ok(A[l-1], min, max)) {
-
-				}
-			}
-			res = Math.max(res, r - l + 1);
-		}
-		System.out.println(res);
+		Bravo o = new Bravo(n, A);
+		System.out.println(o.solve());
 	}
 
 	static int[] scanArray(Scanner scanner, int n) {
