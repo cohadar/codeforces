@@ -10,4 +10,9 @@
 	Unfortunately E used a sparse SegmentTree and I only had dense one in my library, waster 42 min.
 	Worked on D and got it working with 1 min left and then notices it needs online algorithm and I made offline one. 
 	In short, I risked and I lost, and I was not prepared enough.
-	
+2016-19-03 | India Hacks 2016
+	Started 10 min late.
+	Failed pretest 5 on A because of blind-spot
+	Done B in 10 min - perfect
+	Lost 30 min extra on C because of wrong boundaries, and not using debug, and not developing code gradually.
+
