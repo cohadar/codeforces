@@ -5,24 +5,26 @@ import java.io.*;
 public class Alfa {
 
 	public static double upper(double x0, double y0) {
-		int kk = -1;
-		for (int k = 0; k <= 1_000_000_000; k++) {
-			double alpha = (x0 - y0*(2*k+1)) / (x0-y0);
-			if (0.0 <= alpha && alpha <= 1.0) {
-				
-			}
-		}
-		return 0.0;
+		long k = (long)((x0 - y0) / (2*y0));
+		return (x0 - y0) / (2*k);
 	}
 
 	public static double lower(double x0, double y0) {
-		return 0.0;
+		long k = (long)((x0 / y0 + 1.0) / 2.0 - 1.0);
+		if (k < 0) {
+			return Double.POSITIVE_INFINITY;	
+		}
+		return (x0 + y0) / (2*k + 2);
 	}
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		double x0 = scanner.nextDouble();
 		double y0 = scanner.nextDouble();
+		if (y0 > x0) {
+			System.out.println(-1);
+			return;
+		}
 		if (x0 == y0) {
 			System.out.println(x0);
 			return;
