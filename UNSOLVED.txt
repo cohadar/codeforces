@@ -7,3 +7,4 @@
 2016-02-18 | http://codeforces.com/problemset/problem/446/A
 2016-02-23 | http://codeforces.com/problemset/problem/489/C
 2016-02-28 | http://codeforces.com/problemset/problem/611/C
+2016-03-26 | http://codeforces.com/problemset/problem/593/B - segment intersect
