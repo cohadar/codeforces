@@ -17,8 +17,9 @@
 	Lost 30 min extra on C because of wrong boundaries, and not using debug, and not developing code gradually.
 2016-28-03 | VKCup2016Round1Div2
 	A - solve under 10
-	B - Lasted 40min, too long, due to not doing paper properly (bad TreeMap idea)
-	C - blindsight - failed because of special case
-	D - was very close to solution, but had insufficient math
+	B - Lasted 40min, too long, due to not doing paper properly (bad TreeMap idea) 
+		This problem has simpler solution than I made, I just neglected to do paper properly (and paid the price in time)
+	C - blindsight - failed because of special case - (d == 1 && n > 2) - argh, do your petite manually!
+	D - was very close to solution, but had insufficient math. (actually had bad math)
 	E - did not attempt
 	
