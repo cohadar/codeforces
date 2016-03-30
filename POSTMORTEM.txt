@@ -31,4 +31,5 @@
 	F - 37m, failed because of time pressure, had it 99% complete.
 		lost precious time & introduced bugs because of stupid n,m variable names.
 		also lost time because neglected to use functions and got bugged down in too long if/for code.
+		Actually, I had bad paper because I did not read properly, but it was solvable nonetheless.
 	E - did not attempt

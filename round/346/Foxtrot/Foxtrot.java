@@ -19,60 +19,26 @@ public class Foxtrot {
 		return new int[] { -1, 0, 0 };
 	}
 
-	public static int[][] stack(int n, int m, int h, long d, int cy, int cx) {
-		int[][] D = new int[n][m];
-		D[cy][cx] = h;
-		d--;
-		outer:
-		for (int y = cy - 1; y >= 0; y--) {
-			if (d > 0) {
-				d--;
-				D[y][cx] = h;
-			} else {
-				break;
-			}
-			for (int x = cx + 1; x < m; x++) {
-				if (d > 0) {
-					d--;
-					D[cy][cx] = h;
-				} else {
-					break outer;
-				}				
-			}
-			for (int x = cx - 1; x >= 0; x--) {
-				if (d > 0) {
-					d--;
-					D[cy][cx] = h;
-				} else {
-					break outer;
-				}				
-			}			
+	static int[] DX = new int[] { +1, 00, -1, 00 };
+	static int[] DY = new int[] { 00, +1, 00, -1 };
+
+	public static void flood(int[][] D, int y, int x, int h, long[] pd) {
+		if (pd[0] <= 0 || y < 0 || x < 0 || y >= D.length || x >= D[0].length) {
+			return;
 		}
-		outer2:
-		for (int y = cy + 1; y < n; y++) {
-			if (d > 0) {
-				d--;
-				D[y][cx] = h;
-			} else {
-				break;
+		if (D[y][x] == 0) {
+			D[y][x] = h;
+			pd[0]--;
+			for (int i = 0; i < 4; i++) {
+				flood(D, y+DY[i], x+DX[i], h, pd);	
 			}
-			for (int x = cx + 1; x < m; x++) {
-				if (d > 0) {
-					d--;
-					D[cy][cx] = h;
-				} else {
-					break outer2;
-				}				
-			}
-			for (int x = cx - 1; x >= 0; x--) {
-				if (d > 0) {
-					d--;
-					D[cy][cx] = h;
-				} else {
-					break outer2;
-				}				
-			}			
-		}	
+		}
+	}
+
+	public static int[][] stack(int n, int m, int h, long d, int cy, int cx) {
+ 		int[][] D = new int[n][m];
+ 		long[] pd = new long[] { d };
+		flood(D, cy, cx, h, pd);
 		return D;
 	}
 
