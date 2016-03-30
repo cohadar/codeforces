@@ -10,16 +10,25 @@
 	Unfortunately E used a sparse SegmentTree and I only had dense one in my library, waster 42 min.
 	Worked on D and got it working with 1 min left and then notices it needs online algorithm and I made offline one. 
 	In short, I risked and I lost, and I was not prepared enough.
-2016-19-03 | India Hacks 2016
+2016-03-19 | India Hacks 2016
 	Started 10 min late.
 	Failed pretest 5 on A because of blind-spot
 	Done B in 10 min - perfect
 	Lost 30 min extra on C because of wrong boundaries, and not using debug, and not developing code gradually.
-2016-28-03 | VKCup2016Round1Div2
+2016-03-28 | VKCup2016Round1Div2
 	A - solve under 10
 	B - Lasted 40min, too long, due to not doing paper properly (bad TreeMap idea) 
 		This problem has simpler solution than I made, I just neglected to do paper properly (and paid the price in time)
 	C - blindsight - failed because of special case - (d == 1 && n > 2) - argh, do your petite manually!
 	D - was very close to solution, but had insufficient math. (actually had bad math)
 	E - did not attempt
-	
+2016-03-30 | Round #346
+	A - 5m, failed because of off by one.
+	B - 22m, lost some time because of bad naming / renaming.
+	C - 10m, great time, but code was short naturally.
+	D - 34m, lost 10m because of not careful reading / starting conditions.
+	E - 28m, lost 10m because of renaming and incomplete paper.
+	F - 37m, failed because of time pressure, had it 99% complete.
+		lost precious time & introduced bugs because of stupid n,m variable names.
+		also lost time because neglected to use functions and got bugged down in too long if/for code.
+	E - did not attempt
