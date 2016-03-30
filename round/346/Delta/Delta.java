@@ -4,7 +4,8 @@ import java.io.*;
 /* Mighty Cohadar */
 public class Delta {
 
-	static enum Direction { N, S, W, E };
+	static enum Direction { E, N, W, S };
+	static Direction[] Directions = Direction.values();
 
 	public static boolean isLeftTurn(Direction d, int x0, int y0, int x1, int y1) {
 		switch (d) {
@@ -22,33 +23,15 @@ public class Delta {
 	}
 
 	public static Direction left(Direction d) {
-		switch (d) {
-		case N:
-			return Direction.W;
-		case S:
-			return Direction.E;
-		case W:
-			return Direction.S;
-		case E:
-			return Direction.N;
-		default:
-			throw new RuntimeException("Unknown option: " + (d));
-		}
+		return Directions[(d.ordinal()+1)%4];
+	}
+
+	public static Direction reverse(Direction d) {
+		return Directions[(d.ordinal()+2)%4];
 	}
 
 	public static Direction right(Direction d) {
-		switch (d) {
-		case N:
-			return Direction.E;
-		case S:
-			return Direction.W;
-		case W:
-			return Direction.N;
-		case E:
-			return Direction.S;
-		default:
-			throw new RuntimeException("Unknown option: " + (d));
-		}
+		return Directions[(d.ordinal()+3)%4];
 	}
 
 	public static void main(String[] args) {
@@ -75,4 +58,3 @@ public class Delta {
 	}
 
 }
-

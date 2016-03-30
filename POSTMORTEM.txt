@@ -26,7 +26,7 @@
 	A - 5m, failed because of off by one.
 	B - 22m, lost some time because of bad naming / renaming.
 	C - 10m, great time, but code was short naturally.
-	D - 34m, lost 10m because of not careful reading / starting conditions.
+	D - 34m, lost 10m because of not careful reading / starting conditions. +enum ordinal modulo.
 	E - 28m, lost 10m because of renaming and incomplete paper.
 	F - 37m, failed because of time pressure, had it 99% complete.
 		lost precious time & introduced bugs because of stupid n,m variable names.
