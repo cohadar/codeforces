@@ -13,3 +13,4 @@ http://codeforces.com/problemset/problem/534/B            | tricky DP with both 
 http://codeforces.com/problemset/problem/467/C            | nice example of removing DP ifs with proper for bounds
 http://codeforces.com/problemset/problem/602/B            | smarter is simpler, two pointers, use range arithmetic
 http://codeforces.com/problemset/problem/658/C            | petite cases discipline
+http://codeforces.com/problemset/problem/652/A            | zero case and boundaries nightmare
