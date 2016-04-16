@@ -4,58 +4,20 @@ import java.io.*;
 /* Mighty Cohadar */
 public class Bravo {
 
-	public static void pack(Integer[][] L, Integer[][] R, int im) {
-		int n = L.length;
-		for (int i = 0; i < n; i++) {
-			if (L[i][0] == null) {
-				L[i][0] = im;
-				return;
-			}
-			if (R[i][0] == null) {
-				R[i][0] = im;
-				return;
-			}
-		}
-		for (int i = 0; i < n; i++) {
-			if (L[i][1] == null) {
-				L[i][1] = L[i][0];
-				L[i][0] = im;
-				return;
-			}
-			if (R[i][1] == null) {
-				R[i][1] = R[i][0];
-				R[i][0] = im;
-				return;
-			}
+	public static int packX(int im, int n) {
+		if (im < 2 * n) {
+			return (im % 2 == 0) ? 0 : 3;
+		} else {
+			return (im % 2 == 0) ? 1 : 2;
 		}
 	}
 
-	public static int unpack(Integer[][] L, Integer[][] R) {
-		int n = L.length;
-		for (int i = 0; i < n; i++) {
-			if (L[i][0] != null) {
-				int ret = L[i][0];
-				L[i][0] = null;
-				return ret;
-			}
-			if (L[i][1] != null) {
-				int ret = L[i][1];
-				L[i][1] = null;
-				return ret;
-			}
-			if (R[i][0] != null) {
-				int ret = R[i][0];
-				R[i][0] = null;
-				return ret;
-			}
-			if (R[i][1] != null) {
-				int ret = R[i][1];
-				R[i][1] = null;
-				return ret;
-			}
-		}
-		assert false : "SNH";
-		return -1;
+	public static int packY(int im, int n) {
+		return (im % (2 * n)) / 2;
+	}
+
+	public static int unpackX(int x) {
+		return (x < 2) ? x ^ 1 : x;
 	}
 
 	public static void main(String[] args) {
@@ -64,19 +26,22 @@ public class Bravo {
 		int m = scanner.nextInt();
 		assert 1 <= n && n <= 100 : "out of range, n: " + n;
 		assert 1 <= m && m <= 4 * n : "out of range, m: " + m;
-		Integer[][] L = new Integer[n][2];
-		Integer[][] R = new Integer[n][2];
-		for (int i = 0; i < m; i++) {
-			pack(L, R, i + 1);
+		Integer[][] B = new Integer[n][4];
+		for (int im = 0; im < m; im++) {
+			int x = packX(im, n);
+			int y = packY(im, n);
+			B[y][x] = im + 1;
 		}
-		for (int i = 0; i < m; i++) {
-			System.out.print(unpack(L, R));
-			System.out.print(' ');
+		
+		for (int y = 0; y < n; y++) {
+			for (int ix = 0; ix < 4; ix++) {
+				int x = unpackX(ix);
+				if (B[y][x] != null) {
+					System.out.print(B[y][x]);
+					System.out.print(' ');
+				}
+			}
 		}
-	}
-
-	static void debug(Object...os) {
-		System.err.printf("%.65536s\n", Arrays.deepToString(os));
 	}
 	
 }
