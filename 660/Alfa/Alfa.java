@@ -14,24 +14,6 @@ public class Alfa {
 		return gcd(a, b) == 1;
 	}
 
-	public static int findCoprime(int a, int b) {
-		int max = Math.max(a, b);
-		for (int i = 1; i < 1000; i++) {
-			int k = max - i;
-			if (k > 0 && coprime(k, a) && coprime(k, b)) {
-				return k;
-			}
-		}
-		int min = Math.min(a, b);
-		for (int i = 1; i < 1000; i++) {
-			int k = min + i;
-			if (k < 1_000_000_000 && coprime(k, a) && coprime(k, b)) {
-				return k;
-			}
-		}
-		return -1;
-	}
-
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		int n = scanner.nextInt();
@@ -41,7 +23,7 @@ public class Alfa {
 		L.add(A[0]);
 		for (int i = 1; i < A.length; i++) {
 			if (!coprime(A[i-1], A[i])) {
-				L.add(findCoprime(A[i-1], A[i]));
+				L.add(1);
 			}
 			L.add(A[i]);
 		}	
