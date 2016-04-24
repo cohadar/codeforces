@@ -33,3 +33,9 @@
 		also lost time because neglected to use functions and got bugged down in too long if/for code.
 		Actually, I had bad paper because I did not read properly, but it was solvable nonetheless.
 	E - did not attempt
+2016-04-24 | Round #348
+	A - 5m
+	B - 14m
+	C - skip
+	D - failed (too tired from GCJ practicing)
+	
