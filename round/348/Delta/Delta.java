@@ -101,7 +101,7 @@ public class Delta {
 			if (t == 1) {
 				int x = scanner.nextInt();
 				shift += n;
-				shift -= (x & ~1);	
+				shift -= (x / 2 * 2);	
 				shift %= n;				
 				switch (-x % 2) {
 				case 0:
