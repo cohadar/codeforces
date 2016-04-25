@@ -6,84 +6,29 @@ import java.io.*;
   */
 public class Delta {
 
-	static class State {
-		final int val;
-		final boolean swap;
-		State(int val, boolean swap) {
-			this.val = val;
-			this.swap = swap;
-		}
-		public String toString() {
-			return String.format("(val=%d, swap=%b)", val, swap);
-		}	
-	}
-
-	public static State next(State state) {
-		if (state.val == 0) {
-			return new State(1, state.swap);
-		} else {
-			return new State(0, state.swap);
-		}
-	}
-
-	public static State prev(State state) {
-		if (state.val == 0) {
-			return new State(-1, state.swap);
-		} else {
-			return new State(0, state.swap);
-		}
-	}
-
-	public static State swap(State state) {
-		return new State(state.val, !state.swap);
-	}
-
 	final int n;
-	final State state;
-	final long shift;
+	final int l;
+	final int r;
 	
-	public Delta(int n, State state, long shift) {
+	public Delta(int n, int l, int r) {
 		this.n = n;
-		this.state = state;
-		this.shift = shift;
+		this.l = l;
+		this.r = r;
 	}
 
 	public int index(int index) {
 		return (index + n) % n;
 	}
 
-	public int boy(long pos) {
-		int i = (int)(pos % n);
-		boolean even = (i % 2 == 0);
-		switch (state.val) {
-		case 0:
-			if (state.swap) {
-				return (even) ? index(i + 1) : index(i - 1);
-			} else {
-				return (even) ? index(i + 0) : index(i - 0);
-			}
-		case 1:
-			if (state.swap) {
-				return (even) ? index(i + 0) : index(i + 2);
-			} else {
-				return (even) ? index(i + 1) : index(i + 1);
-			}
-		case -1:
-			if (state.swap) {
-				return (even) ? index(i - 2) : index(i + 0);
-			} else {
-				return (even) ? index(i - 1) : index(i - 1);
-			}
-		default:
-			throw new RuntimeException("Unknown option: " + (state.val));
-		}
+	public int boy(int i) {
+		return (i % 2 == 0) ? index(i + l) : index(i + r);
 	}
 
 	public String solve() {
-		debug(shift, state);
+		debug(n, l, r);
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < n; i++) {
-			sb.append(boy(shift + i) + 1);
+			sb.append(boy(i) + 1);
 			sb.append(' ');
 		}
 		return sb.toString();
@@ -94,31 +39,26 @@ public class Delta {
 		int q = scanner.nextInt();
 		assert 2 <= n && n <= 1e6 : "out of range, n: " + n;
 		assert 1 <= q && q <= 2e6 : "out of range, q: " + q;
-		long shift = 0;
-		State state = new State(0, false);
+		int l = 0;
+		int r = 0;
 		for (int i = 0; i < q; i++) {
 			int t = scanner.nextInt();
 			if (t == 1) {
 				int x = scanner.nextInt();
-				shift += n;
-				shift -= (x / 2 * 2);	
-				shift %= n;				
-				switch (-x % 2) {
-				case 0:
-					// none
-					break;
-				case 1:
-					state = next(state);
-					break;
-				case -1:
-					state = prev(state);
-					break;
-				}
+				l += n;
+				r += n;
+				l += x;
+				r += x;
+				l %= n;				
+				r %= n;				
 			} else {
-				state = swap(state);
+				int l1 = r + 1;
+				int r1 = l - 1;
+				l = l1;
+				r = r1;
 			}
 		}
-		return new Delta(n, state, shift);
+		return new Delta(n, l, r);
 	} 
 
 	public static void main(String[] args) {
@@ -189,14 +129,14 @@ class FastScanner {
 		}
 		return (negative) ? -res : res;
 	}
-	public long nextLong() {
+	public int nextint() {
 		int c = skipWhitespace();
 		boolean negative = false;
 		if (c == '-') {
 			negative = true;
 			c = read();
 		}
-		long res = 0;
+		int res = 0;
 		while (Character.isDigit(c)) {
 			res = res * 10 + (c - '0');
 			c = read();
