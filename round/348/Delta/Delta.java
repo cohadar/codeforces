@@ -6,37 +6,81 @@ import java.io.*;
   */
 public class Delta {
 
+	static class State {
+		final int val;
+		final boolean swap;
+		State(int val, boolean swap) {
+			this.val = val;
+			this.swap = swap;
+		}
+		public String toString() {
+			return String.format("(val=%d, swap=%b)", val, swap);
+		}	
+	}
+
+	public static State next(State state) {
+		if (state.val == 0) {
+			return new State(1, state.swap);
+		} else {
+			return new State(0, state.swap);
+		}
+	}
+
+	public static State prev(State state) {
+		if (state.val == 0) {
+			return new State(-1, state.swap);
+		} else {
+			return new State(0, state.swap);
+		}
+	}
+
+	public static State swap(State state) {
+		return new State(state.val, !state.swap);
+	}
+
 	final int n;
-	final int sw;
+	final State state;
 	final long shift;
 	
-	public Delta(int n, int sw, long shift) {
+	public Delta(int n, State state, long shift) {
 		this.n = n;
-		this.sw = sw;
+		this.state = state;
 		this.shift = shift;
-		assert sw == -1 || sw == 0 || sw == 1 : "bad sw: " + sw;
 	}
 
-	public int next(int index) {
-		return (index + 1) % n;
-	}
-
-	public int prev(int index) {
-		return (index - 1 + n) % n;
+	public int index(int index) {
+		return (index + n) % n;
 	}
 
 	public int boy(long pos) {
-		int index = (int)(pos % n);
-		if (sw == 0) {
-			return index;
+		int i = (int)(pos % n);
+		boolean even = (i % 2 == 0);
+		switch (state.val) {
+		case 0:
+			if (state.swap) {
+				return (even) ? index(i + 1) : index(i - 1);
+			} else {
+				return (even) ? index(i + 0) : index(i - 0);
+			}
+		case 1:
+			if (state.swap) {
+				return (even) ? index(i + 0) : index(i + 2);
+			} else {
+				return (even) ? index(i + 1) : index(i + 1);
+			}
+		case -1:
+			if (state.swap) {
+				return (even) ? index(i - 2) : index(i + 0);
+			} else {
+				return (even) ? index(i - 1) : index(i - 1);
+			}
+		default:
+			throw new RuntimeException("Unknown option: " + (state.val));
 		}
-		if (sw == 1) {
-			return (index % 2 == 0) ? next(index) : prev(index);
-		}
-		return (index % 2 == 0) ? prev(index) : next(index);
 	}
 
 	public String solve() {
+		debug(shift, state);
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < n; i++) {
 			sb.append(boy(shift + i) + 1);
@@ -50,34 +94,31 @@ public class Delta {
 		int q = scanner.nextInt();
 		assert 2 <= n && n <= 1e6 : "out of range, n: " + n;
 		assert 1 <= q && q <= 2e6 : "out of range, q: " + q;
-		long prev = 0;
 		long shift = 0;
-		int sw = 0;
+		State state = new State(0, false);
 		for (int i = 0; i < q; i++) {
 			int t = scanner.nextInt();
 			if (t == 1) {
 				int x = scanner.nextInt();
-				prev = shift;
 				shift += n;
-				shift -= x;	
+				shift -= (x & ~1);	
 				shift %= n;				
-			} else {
-				if (shift % 2 == 0) {
-					if (prev % 2 == 0) {
-						sw = 1 - sw;
-					} else {
-						sw = -sw;
-					}
-				} else {
-					if (prev % 2 != 0) {
-						sw = 1 - sw;
-					} else {
-						sw = -1 - sw;
-					}
+				switch (-x % 2) {
+				case 0:
+					// none
+					break;
+				case 1:
+					state = next(state);
+					break;
+				case -1:
+					state = prev(state);
+					break;
 				}
+			} else {
+				state = swap(state);
 			}
 		}
-		return new Delta(n, sw, shift);
+		return new Delta(n, state, shift);
 	} 
 
 	public static void main(String[] args) {
