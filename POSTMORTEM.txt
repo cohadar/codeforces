@@ -39,3 +39,8 @@
 	C - skip
 	D - failed (too tired from GCJ practicing)
 	
+2016-04-29 | Round #349
+	A - 10m
+	B - skip (geometry)
+	C - simple memoization, did wrong paper, GCJ training fatigue, timeout
+	D - 
