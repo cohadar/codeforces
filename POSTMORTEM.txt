@@ -44,3 +44,12 @@
 	B - skip (geometry)
 	C - simple memoization, did wrong paper, GCJ training fatigue, timeout
 	D - 
+
+2016-05-05 | Round #350 | great meta-play won the day. Would be even better had I used proper teplates for harder problems.
+	A - 10m
+	B - 10m
+	C - 17m
+	D1 - 10m
+	D2 - skip
+	E - skip
+	F - 1h25m
