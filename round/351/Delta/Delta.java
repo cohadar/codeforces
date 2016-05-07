@@ -40,11 +40,13 @@ public class Delta {
 		CD[3] = b;
 		CD[n-1] = d;
 		int j = 4;
+		int r = n-2;
 		for (int i = 0; i < n; i++) {
 			if (N[i] == true) {
 				AB[j] = i;
-				CD[j] = i;
+				CD[r] = i;
 				j++;
+				r--;
 			}
 		}
 		System.out.println(join(AB, " "));
