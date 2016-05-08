@@ -53,3 +53,11 @@
 	D2 - skip
 	E - skip
 	F - 1h25m
+
+2016-05-07 | Round #351 | Lost a lot of points due to speed.
+	A - 5m
+	B - first skipped for C, around 25m after D midfail
+	C - 27m, a bit slow because of inproper naming.
+	D - had haizenbug for more than 1h, this hurt me the most, >>>solved it with a single personal pretest<<<
+	E - read & avoided
+	F - read & avoided
