@@ -14,3 +14,4 @@ http://codeforces.com/problemset/problem/467/C            | nice example of remo
 http://codeforces.com/problemset/problem/602/B            | smarter is simpler, two pointers, use range arithmetic
 http://codeforces.com/problemset/problem/658/C            | petite cases discipline
 http://codeforces.com/problemset/problem/652/A            | zero case and boundaries nightmare
+http://codeforces.com/problemset/problem/570/C            | makes you think you need interval tree, but no.

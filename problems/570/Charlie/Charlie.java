@@ -6,89 +6,36 @@ import java.io.*;
   */
 public class Charlie {
 
-	final char[] C;
-	final TreeSet<Interval> T = new TreeSet<>();
 	private int sum;
+	final int n;
+	final boolean[] B;
 	
-	public Charlie(char[] C) {
-		this.C = C;
-		int l = -1;
-		for (int r = 0; r < C.length; r++) {
-			if (C[r] == '.') {
-				if (l == -1) {
-					l = r;
-				}
-			} else {
-				if (l != -1) {
-					T.add(new Interval(l, r - 1));
-				}
-				l = -1;
-			}
-		}
-		if (l != -1) {
-			T.add(new Interval(l, C.length - 1));
-		}
-		for (Interval i : T) {
-			sum += i.price();
-		}	
+	public Charlie(int sum, boolean[] B) {
+		this.sum = sum;
+		this.n = B.length;
+		this.B = B;
 	}
 
-	public void merge(int x) {
-		Interval i = new Interval(x, x);
-		Interval l = T.lower(i);
-		Interval r = T.higher(i);
-		if (l != null && r != null && l.r == x-1 && r.l == x+1) {
-			sum -= l.price();
-			sum -= r.price();
-			Interval m = new Interval(l.l, r.r);
-			sum += m.price();
-			T.remove(l);
-			T.remove(r);
-			T.add(m);
-		} else if (l != null && l.r == x-1) {
-			sum -= l.price();
-			Interval m = new Interval(l.l, x);
-			sum += m.price();
-			T.remove(l);
-			T.add(m);
-		} else if (r != null && r.l == x+1) {
-			sum -= r.price();
-			Interval m = new Interval(x, r.r);
-			sum += m.price();
-			T.remove(r);
-			T.add(m);
+	public int solve(int x, boolean b) {
+		if (B[x] == b) {
+			return sum;
+		}
+		if (b) {
+			if (x > 0 && B[x-1]) {
+				sum++;
+			}
+			if (x < n-1 && B[x+1]) {
+				sum++;
+			}			
 		} else {
-			T.add(i);
-		}
-	}
-
-	public void divide(int x) {
-		Interval i = new Interval(x, x);
-		Interval l = T.floor(i);
-		if (l != null && l.r >= x) {
-			sum -= l.price();
-			Interval a = new Interval(l.l, x - 1);
-			Interval b = new Interval(x + 1, l.r);
-			T.remove(l);
-			if (!a.isEmpty()) {
-				sum += a.price();
-				T.add(a);
+			if (x > 0 && B[x-1]) {
+				sum--;
 			}
-			if (!b.isEmpty()) {
-				sum += b.price();
-				T.add(b);
-			}
+			if (x < n-1 && B[x+1]) {
+				sum--;
+			}						
 		}
-	}	
-
-	public int solve(int x, char c) {
-		if (c == '.' && C[x] != '.') {
-			merge(x);
-		}
-		if (c != '.' && C[x] == '.') {
-			divide(x);
-		}
-		C[x] = c;
+		B[x] = b;
 		return sum;
 	}
 
@@ -98,13 +45,26 @@ public class Charlie {
 		int m = scanner.nextInt();
 		scanner.nextLine();
 		char[] C = scanner.nextLine().toCharArray();
-		assert C.length == n;
-		Charlie o = new Charlie(C);
+		boolean[] B = new boolean[C.length];
+		int sum = 0;
+		int len = 0;
+		for (int i = 0; i < C.length; i++) {
+			B[i] = C[i] == '.';
+			if (B[i]) {
+				len++;
+				if (len > 1) {
+					sum++;
+				}
+			} else {
+				len = 0;
+			}
+		}
+		Charlie o = new Charlie(sum, B);
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < m; i++) {
 			int x = scanner.nextInt() - 1;
 			String c = scanner.next();
-			sb.append(o.solve(x, c.charAt(0)));
+			sb.append(o.solve(x, c.charAt(0) == '.'));
 			sb.append('\n');
 		}
 		System.out.print(sb);
@@ -114,27 +74,6 @@ public class Charlie {
 		System.err.printf("%.65536s\n", Arrays.deepToString(os));
 	}
 
-}
-
-class Interval implements Comparable<Interval> {
-	final int l;
-	final int r;
-	Interval(int l, int r) {
-		this.l = l;
-		this.r = r;
-	}
-	public int compareTo(Interval that) {
-		return Integer.compare(this.l, that.l);
-	}
-	public String toString() {
-		return String.format("(l=%d, r=%d)", l, r);
-	}	
-	public int price() {
-		return Math.max(0, this.r - this.l);
-	}
-	public boolean isEmpty() {
-		return l > r;
-	}
 }
 
 class FastScanner {

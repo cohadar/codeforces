@@ -7,3 +7,5 @@ FIRST: (.java)
 	1h16m - examp pass
 		Time limit exceeded on test 7 - forgot to use StringBuilder
 	1h20m - accepted
+
+	19m - after reading other submissions, without using explicit Intervals.
