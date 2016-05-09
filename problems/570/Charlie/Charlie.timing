@@ -1,0 +1,9 @@
+## Charlie
+FIRST: (.java)
+	3m - done reading
+	16m - done paper
+	1h10m - examp pass
+		Wrong answer on test 6 - default equals method for Pair was bad idea for Interval
+	1h16m - examp pass
+		Time limit exceeded on test 7 - forgot to use StringBuilder
+	1h20m - accepted
