@@ -1,0 +1,11 @@
+## Alfa
+FIRST: (.java)
+	5m - done reading
+	6m - done paper
+	12m - examp pass
+		Wrong answer on test 11 - double cannot handle 2e-1000000 lol.
+	25m - acepted - nice use of ListIterator
+	submissions: 
+		there is a nice solutions with 2 deque.
+		or 1 deque and sb.append left side inside loop.
+		
