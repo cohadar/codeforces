@@ -7,3 +7,7 @@ FIRST: (.java)
 	25m - examp pass
 		Time limit exceeded on test 51 (with fenwick) - need fast scanner too.
 		accepted with FastScanner & FenwickTree
+	
+	Let's try without FenwickTree:
+	9m - log-cumul-array paper
+	14m - accepted
