@@ -1,0 +1,9 @@
+## Charlie
+FIRST: (.java)
+	2m - done reading
+	10m - done paper
+	16m - examp pass
+		Time limit exceeded on test 7 (without fenwick)
+	25m - examp pass
+		Time limit exceeded on test 51 (with fenwick) - need fast scanner too.
+		accepted with FastScanner & FenwickTree
