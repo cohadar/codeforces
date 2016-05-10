@@ -4,71 +4,165 @@ import java.io.*;
 /* Mighty Cohadar */
 public class Charlie {
 
-	public static long binom3(long x) {
-		if (x < 3) {
-			return 0;
+	public static boolean add(Map<Long, Integer> M, Long key) {
+		Integer count = M.get(key);
+		if (count == null) {
+			M.put(key, 1);	
+			return true;
+		} else {
+			M.put(key, count + 1);
+			return false;
 		}
-		return x * (x - 1) * (x - 2) / 6;
 	}
-
-	public static long special(int[] A) {
-		HashMap<Integer, Integer> M = new HashMap<>();
-		for (int i = 0; i < A.length; i++) {
-			Integer count = M.get(A[i]);
-			M.put(A[i], (count == null) ? 1 : count + 1);
+	
+	public static boolean remove(Map<Long, Integer> M, Long key) {
+		Integer count = M.get(key);
+		if (count == null) {
+			return false;
 		}
-		long count = 0;
-		for (int v : M.values()) {
-			count += binom3(v);
+		count--;
+		if (count == 0) {
+			M.remove(key);
+		} else {
+			M.put(key, count);
 		}
-		return count;
+		return true;
+	}
+	
+	public static int count(Map<Long, Integer> M, Long key) {
+		Integer count = M.get(key);
+		return (count == null) ? 0 : count;
 	}
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		int n = scanner.nextInt();
-		assert 1 <= n && n <= 2e5 : "out of range, n: " + n;
-		int k = scanner.nextInt();
-		assert 1 <= k && k <= 2e5 : "out of range, k: " + k;
-		int[] A = scanArray(scanner, n);
-		if (k == 1) {
-			System.out.println(special(A));
-			return;
+		FastScanner scanner = new FastScanner(System.in);
+		int nn = scanner.nextInt();
+		long kk = scanner.nextLong();
+		long[] A = new long[nn];
+		TreeMap<Long, Integer> L = new TreeMap<>();
+		TreeMap<Long, Integer> R = new TreeMap<>();
+		for (int i = 0; i < nn; i++) {
+			A[i] = scanner.nextLong();
+			add(R, A[i]);
 		}
-		HashSet<Integer> H = new HashSet<>(); 
-		long count = 0;
-		for (int il = 0; il < n; il++) {
-			int l = A[il];
-			if (H.contains(l)) {
-				continue;
-			} else {
-				H.add(l);
+		long sum = 0;
+		for (int i = 0; i < A.length; i++) {
+			long ak = A[i];
+			remove(R, ak);
+			if (ak % kk == 0) {
+				sum += (long)count(L, ak / kk) * (long)count(R, ak * kk);
 			}
-			long m = 1L * k * l;
-			long r = 1L * k * k * l;
-			long l_count = 1;
-			long lm_count = 0;
-			for (int ir = il + 1; ir < n; ir++) {
-				if (A[ir] == r) {
-					count += lm_count;
+			add(L, ak);
+		}
+		System.out.println(sum);
+	}
+	
+}
+
+class FastScanner {
+	private final InputStream is;
+	private final byte[] buff = new byte[1024];
+	private int i;
+	private int n;
+	public FastScanner(InputStream is) {
+		this.is = is;
+	}
+	private int read() {
+		if (n == -1) {
+			throw new InputMismatchException("<EOF>");
+		}
+		if (i >= n) {
+			i = 0;
+			try {
+				n = is.read(buff);
+			} catch (IOException e) {
+				throw new InputMismatchException(e.getMessage());
+			}
+			if (n <= 0) {
+				return -1;
+			}
+		}
+		return buff[i++];
+	}
+	private void unread() {
+		i--;
+		if (i < 0) {
+			throw new InputMismatchException("unread");
+		}
+	}
+	private int skipWhitespace() {
+		while (true) {
+			int c = read();
+			if (Character.isWhitespace(c) == false) {
+				return c;
+			}
+		}
+	}
+	public int nextInt() {
+		int c = skipWhitespace();
+		boolean negative = false;
+		if (c == '-') {
+			negative = true;
+			c = read();
+		}
+		int res = 0;
+		while (Character.isDigit(c)) {
+			res = res * 10 + (c - '0');
+			c = read();
+		};
+		if (c != -1) {
+			unread();
+		}
+		return (negative) ? -res : res;
+	}
+	public long nextLong() {
+		int c = skipWhitespace();
+		boolean negative = false;
+		if (c == '-') {
+			negative = true;
+			c = read();
+		}
+		long res = 0;
+		while (Character.isDigit(c)) {
+			res = res * 10 + (c - '0');
+			c = read();
+		};
+		if (c != -1) {
+			unread();
+		}
+		return (negative) ? -res : res;
+	}	
+	public String next() {
+		StringBuilder sb = new StringBuilder();
+		int c = skipWhitespace();
+		while (true) {
+			sb.append((char)c);
+			c = read();
+			if (c == -1 || Character.isWhitespace(c)) {
+				break;
+			}
+		};
+		if (c != -1) {
+			unread();
+		}
+		return sb.toString();
+	}		
+	public String nextLine() {
+		StringBuilder sb = new StringBuilder();
+		while (true) {
+			int c = read();
+			if (c == '\r') {
+				c = read();
+				if (c != '\n' && c != -1) {
+					unread();
+					c = '\n';
 				}
-				if (A[ir] == m) {
-					lm_count += l_count;
-				} 
-				if (A[ir] == l) {
-					l_count++;
-				} 				
 			}
+			if (c == '\n' || c == -1) {
+				break;
+			}
+			sb.append((char)c);
 		}
-		System.out.println(count);
+		return sb.toString();
 	}
-
-	static int[] scanArray(Scanner scanner, int n) {
-		int[] A = new int[n];
-		for (int i = 0; i < n; i++) {
-			A[i] = scanner.nextInt();
-		}
-		return A;
-	}
-
 }
