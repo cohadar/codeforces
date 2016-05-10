@@ -4,3 +4,4 @@ FIRST: (.java)
 	13m - done paper
 	42m - examp pass
 		accepted - large scale solution
+	1h25m - more compact solution using java 8 streams.
