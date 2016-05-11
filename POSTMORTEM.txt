@@ -61,3 +61,10 @@
 	D - had haizenbug for more than 1h, this hurt me the most, >>>solved it with a single personal pretest<<<
 	E - read & avoided
 	F - read & avoided
+
+2016-05-11 | Round #352 | DO NOT play the hacking game, you are at a disantvantage because most people use C++.
+	A - 3m
+	B - 5m
+	C - 1h
+	D - skipped this for hacking game, bad decision. (-100 points for 2 bad hack attempts, urgh)
+	
