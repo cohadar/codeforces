@@ -1,6 +1,7 @@
 2016-02-20 | Round #343 | http://codeforces.com/contest/629
 	Failed because I did not finalize paper on both C and D.
 	Also D was better for me than C, so I should have done them out of order!
+
 2016-02-28 | 8VC Venture Cup 2016 - Final Round (Div. 2 Edition) | http://codeforces.com/contest/635
 	Took to much time on A instead of just strait coding brute.
 	On B failed to get the paper right in first try
@@ -10,11 +11,13 @@
 	Unfortunately E used a sparse SegmentTree and I only had dense one in my library, waster 42 min.
 	Worked on D and got it working with 1 min left and then notices it needs online algorithm and I made offline one. 
 	In short, I risked and I lost, and I was not prepared enough.
+
 2016-03-19 | India Hacks 2016
 	Started 10 min late.
 	Failed pretest 5 on A because of blind-spot
 	Done B in 10 min - perfect
 	Lost 30 min extra on C because of wrong boundaries, and not using debug, and not developing code gradually.
+
 2016-03-28 | VKCup2016Round1Div2
 	A - solve under 10
 	B - Lasted 40min, too long, due to not doing paper properly (bad TreeMap idea) 
@@ -22,6 +25,7 @@
 	C - blindsight - failed because of special case - (d == 1 && n > 2) - argh, do your petite manually!
 	D - was very close to solution, but had insufficient math. (actually had bad math)
 	E - did not attempt
+
 2016-03-30 | Round #346
 	A - 5m, failed because of off by one.
 	B - 22m, lost some time because of bad naming / renaming.
@@ -33,6 +37,7 @@
 		also lost time because neglected to use functions and got bugged down in too long if/for code.
 		Actually, I had bad paper because I did not read properly, but it was solvable nonetheless.
 	E - did not attempt
+
 2016-04-24 | Round #348
 	A - 5m
 	B - 14m
@@ -68,3 +73,9 @@
 	C - 1h
 	D - skipped this for hacking game, bad decision. (-100 points for 2 bad hack attempts, urgh)
 	
+2016-05-16 | Round #353 | This round demonstrated importance of basic math skills.
+	A - 13m, simple equation, but I got stupid instead of writing it down first.
+	B - 45m, Again simple math equations that took me waaay too much time to straighten out.
+	C - skipped because I saw a lot of people solving D over C
+	D - 1h9m, Had a bad paper but corrected myself, submitted 5m before end, the best way :) 
+	E - 	
