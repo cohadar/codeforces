@@ -1,5 +1,6 @@
 http://codeforces.com/problemset/problem/274/A | smarter is simpler
 http://codeforces.com/problemset/problem/276/C | you don't need FenwickTree for this.
+http://codeforces.com/problemset/problem/348/A | very evil
 http://codeforces.com/problemset/problem/349/B | simple text, nice algo.
 http://codeforces.com/problemset/problem/433/B | big input reading and array memory reuse
 http://codeforces.com/problemset/problem/455/A | radix + max trick
