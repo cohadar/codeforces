@@ -1,5 +1,6 @@
 http://codeforces.com/problemset/problem/274/A | smarter is simpler
 http://codeforces.com/problemset/problem/276/C | you don't need FenwickTree for this.
+http://codeforces.com/problemset/problem/295/A | great array manipulation practice, invers cumul.
 http://codeforces.com/problemset/problem/343/B | easy problem, hard visualisation, 49m, it pays to spend time on nice drawings
 http://codeforces.com/problemset/problem/348/A | very evil
 http://codeforces.com/problemset/problem/349/B | simple text, nice algo.

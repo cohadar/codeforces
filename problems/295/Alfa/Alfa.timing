@@ -4,3 +4,4 @@ FIRST: (.java)
 	11m - brute petite, examp pass, Time limit exceeded on test 11
 	16m - done paper
 	35m - Wrong answer on test 4
+	1h50m - done FenwickTree and InversCumul variants. both accepted.
