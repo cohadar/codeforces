@@ -1,5 +1,6 @@
 http://codeforces.com/problemset/problem/274/A | smarter is simpler
 http://codeforces.com/problemset/problem/276/C | you don't need FenwickTree for this.
+http://codeforces.com/problemset/problem/343/B | easy problem, hard visualisation, 49m, it pays to spend time on nice drawings
 http://codeforces.com/problemset/problem/348/A | very evil
 http://codeforces.com/problemset/problem/349/B | simple text, nice algo.
 http://codeforces.com/problemset/problem/433/B | big input reading and array memory reuse
@@ -18,4 +19,4 @@ http://codeforces.com/problemset/problem/597/A | great interview question
 http://codeforces.com/problemset/problem/602/B | smarter is simpler, two pointers, use range arithmetic
 http://codeforces.com/problemset/problem/607/A | DP is simpler if you invert min to max
 http://codeforces.com/problemset/problem/652/A | zero case and boundaries nightmare
-http://codeforces.com/problemset/problem/658/C | petite cases discipline
+http://codeforces.com/problemset/problem/658/C | petite cases disciplines
