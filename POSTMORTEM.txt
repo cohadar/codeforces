@@ -79,3 +79,13 @@
 	C - skipped because I saw a lot of people solving D over C
 	D - 1h9m, Had a bad paper but corrected myself, submitted 5m before end, the best way :) 
 	E - 	
+
+2016-05-25 | Round #354 | Lost a lot of points due to slowness with small problems
+		   | For comparison, me and allllekssssa both solved only ABC
+		   | but he placed 219 because of speed, and I placed 731 because of slowness.
+	A - 48m, failed, done B, fixed after B
+	B - 43m, slow but not too terrible
+	C - 1h, slow because I presumed DP but it turned out to be two-pointer problem.
+	D - 
+	E - 
+
