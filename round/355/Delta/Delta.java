@@ -7,17 +7,25 @@ import java.io.*;
 public class Delta {
 
 	final int pp;
-	final List<List<Point>> LL;
+	final List<Integer> X;
+	final List<Integer> Y;
+	final List<Integer> M;
 	
-	public Delta(int pp, List<List<Point>> LL) {
+	public Delta(int pp, List<Integer> X, List<Integer> Y, List<Integer> M) {
 		this.pp = pp;
-		this.LL = LL;
+		this.X = X;
+		this.Y = Y;
+		this.M = M;
 	}
 
 	public int solve() {
 		for (int i = 1; i <= pp; i++) {
-			List<Point> prev = LL.get(i-1);
-			List<Point> curr = LL.get(i);
+			int px = X.get(i-1);
+			int py = Y.get(i-1);
+			int pm = M.get(i-1);
+			for (int i = 0; i < X.length; i++) {
+				
+			}
 			for (Point c : curr) {
 				c.min = Integer.MAX_VALUE;
 				for (Point p : prev) {
@@ -32,18 +40,23 @@ public class Delta {
 		int ny = scanner.nextInt();
 		int nx = scanner.nextInt();
 		int pp = scanner.nextInt();
-		List<List<Point>> LL = new ArrayList<>();
+		List<Integer> X = new ArrayList<>(1+pp); 
+		List<Integer> Y = new ArrayList<>(1+pp); 
+		List<Integer> M = new ArrayList<>(1+pp); 
 		for (int i = 0; i <= pp; i++) {
-			LL.add(new ArrayList<Point>());
+			X.add(0);
+			Y.add(0);
+			M.add(0);			
 		}
+		Arrays.fill(M, Integer.MAX_VALUE);
 		for (int y = 0; y < ny; y++) {
 			for (int x = 0; x < nx; x++) {
 				int v = scanner.nextInt();
-				LL.get(v).add(new Point(x, y));
+				X.set(v, x);
+				X.set(v, y);
 			}
 		}
-		LL.get(0).add(new Point(0, 0));
-		return new Delta(pp, LL);
+		return new Delta(pp, X, Y, M);
 	} 
 
 	public static void main(String[] args) {
@@ -56,21 +69,4 @@ public class Delta {
 		System.err.printf("%.65536s\n", Arrays.deepToString(os));
 	}
 
-}
-
-class Point {
-	final int x;
-	final int y;
-	public int min;
-	Point(int x, int y) {
-		this.x = x;
-		this.y = y;
-		this.min = 0;
-	}
-	public int dist(Point p) {
-		return Math.abs(p.x - this.x) + Math.abs(p.y - this.y);
-	}
-	public String toString() {
-		return String.format("(x=%d, y=%d, min=%d)", x, y, min);
-	}	
 }
