@@ -21,3 +21,4 @@ http://codeforces.com/problemset/problem/602/B | smarter is simpler, two pointer
 http://codeforces.com/problemset/problem/607/A | DP is simpler if you invert min to max
 http://codeforces.com/problemset/problem/652/A | zero case and boundaries nightmare
 http://codeforces.com/problemset/problem/658/C | petite cases disciplines
+http://codeforces.com/problemset/problem/158/B | great interview question
