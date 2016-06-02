@@ -6,57 +6,49 @@ import java.io.*;
   */
 public class Delta {
 
+	final int ny;
+	final int nx;
 	final int pp;
-	final List<Integer> X;
-	final List<Integer> Y;
-	final List<Integer> M;
+	final int[][] D;
+	final int[][] M;
 	
-	public Delta(int pp, List<Integer> X, List<Integer> Y, List<Integer> M) {
+	public Delta(int ny, int nx, int pp, int[][] D) {
+		this.ny = ny;
+		this.nx = nx;
 		this.pp = pp;
-		this.X = X;
-		this.Y = Y;
-		this.M = M;
+		this.D = D;
+		this.M = new int[ny][nx];
+		for (int y = 0; y < ny; y++) {
+			Arrays.fill(M[y], Integer.MAX_VALUE);
+		}
+	}
+
+	public int dist(int x1, int y1, int x2, int y2) {
+		return Math.abs(x1 - x2) + Math.abs(y1 - y2);
 	}
 
 	public int solve() {
-		for (int i = 1; i <= pp; i++) {
-			int px = X.get(i-1);
-			int py = Y.get(i-1);
-			int pm = M.get(i-1);
-			for (int i = 0; i < X.length; i++) {
-				
-			}
-			for (Point c : curr) {
-				c.min = Integer.MAX_VALUE;
-				for (Point p : prev) {
-					c.min = Math.min(c.min, c.dist(p) + p.min);
+		for (int y = 0; y < ny; y++) {
+			for (int x = 0; x < nx; x++) {
+				if (D[y][x] == 1) {
+					M[y][x] = dist(0, 0, x, y);
 				}
 			}
 		}
-		return LL.get(pp).get(0).min;
+		return -1;
 	}
 
 	public static Delta load(Scanner scanner) {
 		int ny = scanner.nextInt();
 		int nx = scanner.nextInt();
 		int pp = scanner.nextInt();
-		List<Integer> X = new ArrayList<>(1+pp); 
-		List<Integer> Y = new ArrayList<>(1+pp); 
-		List<Integer> M = new ArrayList<>(1+pp); 
-		for (int i = 0; i <= pp; i++) {
-			X.add(0);
-			Y.add(0);
-			M.add(0);			
-		}
-		Arrays.fill(M, Integer.MAX_VALUE);
+		int[][] D = new int[ny][nx];
 		for (int y = 0; y < ny; y++) {
 			for (int x = 0; x < nx; x++) {
-				int v = scanner.nextInt();
-				X.set(v, x);
-				X.set(v, y);
+				D[y][x] = scanner.nextInt();
 			}
 		}
-		return new Delta(pp, X, Y, M);
+		return new Delta(ny, nx, pp, D);
 	} 
 
 	public static void main(String[] args) {

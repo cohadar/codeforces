@@ -89,3 +89,9 @@
 	D - 
 	E - 
 
+2016-06-01 | Round #355 | need more practice on D problems.
+	A - fast
+	B - had int/long bug, got hacked and fixed it
+	C - very nice time
+	D - tried but solution was too slow
+	E - 

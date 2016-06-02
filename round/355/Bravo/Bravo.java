@@ -13,23 +13,21 @@ public class Bravo {
 		for (int i = 0; i < A.length; i++) {
 			A[i] = scanner.nextInt();
 		}
-		int c = 0;
-		int t = 0;
-		for (int i = 0; i < n; i++) {
-			if (c + A[i] <= h) {
-				c += A[i];
-			} else if (c >= k) {
+		long c = 0;
+		long t = 0;
+		int i = 0;
+		while (i < n) {
+			while (i < n && c + A[i] <= h) {
+				c += A[i++];
+			}
+			if (c <= k) {
+				c = 0;
+				t++;
+			} else {
 				t += c / k;
 				c %= k;
-				i--;
-			} else {
-				t++;
-				c = 0;
-				i--;
 			}
 		}
-		t += c / k;
-		c %= k;
 		if (c > 0) {
 			t++;
 		}
