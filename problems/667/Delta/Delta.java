@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 /**
-  * @author Mighty Cohadar 
+  * @author Mighty Cohadar z
   */
 public class Delta {
 
@@ -13,34 +13,32 @@ public class Delta {
 	final int ny;
 	final int nx;
 	final int pp;
-	final Cell[][] C;
 	final int[][] D;
 	final int[][] T;
-	final List<List<Cell>> LL;
-	final PriorityQueue<Cell> Q;
+	final List<List<Integer>> LL;
+	final PriorityQueue<Integer> Q;
 	
-	public Delta(int ny, int nx, int pp, Cell[][] C, int[][] D, List<List<Cell>> LL) {
+	public Delta(int ny, int nx, int pp, int[][] D, List<List<Integer>> LL) {
 		this.ny = ny;
 		this.nx = nx;
 		this.pp = pp;
-		this.C = C;
 		this.D = D;
 		this.T = new int[ny][nx];
 		this.LL = LL;
-		this.Q = new PriorityQueue<>(new Comparator<Cell> () {
-			public int compare(Cell a, Cell b) {
-				return Integer.compare(T[a.y][a.x], T[b.y][b.x]);
+		this.Q = new PriorityQueue<>(new Comparator<Integer> () {
+			public int compare(Integer a, Integer b) {
+				return Integer.compare(T[yy(a)][xx(a)], T[yy(b)][xx(b)]);
 			}
 		});
 	}
 
-	public void solveDirect(List<Cell> A, List<Cell> B) {
-		for (Cell b : B) {
-			int min = D[b.y][b.x];
-			for (Cell a : A) {
-				min = Math.min(min, D[a.y][a.x] + Math.abs(a.x - b.x) + Math.abs(a.y - b.y));
+	public void solveDirect(List<Integer> A, List<Integer> B) {
+		for (Integer b : B) {
+			int min = D[yy(b)][xx(b)];
+			for (Integer a : A) {
+				min = Math.min(min, D[yy(a)][xx(a)] + Math.abs(xx(a) - xx(b)) + Math.abs(yy(a) - yy(b)));
 			}
-			D[b.y][b.x] = min;
+			D[yy(b)][xx(b)] = min;
 		}
 	}
 
@@ -48,64 +46,76 @@ public class Delta {
 		return x < 0 || y < 0 || x >= nx || y >= ny;
 	}
 
-	public void solveBFS(List<Cell> A, List<Cell> B) {
+	public void solveBFS(List<Integer> A, List<Integer> B) {
 		for (int y = 0; y < ny; y++) {
 			Arrays.fill(T[y], Integer.MAX_VALUE);
 		}
-		for (Cell a : A) {
-			T[a.y][a.x] = D[a.y][a.x];
+		for (Integer a : A) {
+			T[yy(a)][xx(a)] = D[yy(a)][xx(a)];
 			Q.add(a);
 		}
 		while (!Q.isEmpty()) {
-			Cell c = Q.remove(); 
+			int c = Q.remove(); 
 			for (int i = 0; i < 4; i++) {
-				int x = c.x + DX[i];
-				int y = c.y + DY[i];
+				int x = xx(c) + DX[i];
+				int y = yy(c) + DY[i];
 				if (!outside(x, y) && T[y][x] == Integer.MAX_VALUE) {
-					T[y][x] = T[c.y][c.x] + 1;
-					Q.add(C[y][x]);
+					T[y][x] = T[yy(c)][xx(c)] + 1;
+					Q.add(cell(x, y));
 				}
 			}
 		}
-		for (Cell b : B) {
-			D[b.y][b.x] = T[b.y][b.x];
+		for (int b : B) {
+			D[yy(b)][xx(b)] = T[yy(b)][xx(b)];
 		}
+	}
+
+	static int xx(int cell) {
+		return (cell >> 16) & 0xFFFF;
+	}
+
+	static int yy(int cell) {
+		return cell & 0xFFFF;
+	}
+
+	static int cell(int x, int y) {
+		return (x << 16) + y;
 	}
 
 	public int solve() {
 		for (int i = 1; i < pp; i++) {
-			List<Cell> A = LL.get(i-1);
-			List<Cell> B = LL.get(i);
-			if (A.size() * B.size() <= 2 * ny * nx) {
+			List<Integer> A = LL.get(i-1);
+			List<Integer> B = LL.get(i);
+			if (A.size() * B.size() <= 10 * ny * nx) {
 				solveDirect(A, B);	
 			} else {
 				solveBFS(A, B);	
 			}
 		}
-		Cell c = LL.get(pp-1).get(0);
-		return D[c.y][c.x];
+		int c = LL.get(pp-1).get(0);
+		return D[yy(c)][xx(c)];
 	}
 
 	public static Delta load(FastScanner scanner) {
 		int ny = scanner.nextInt();
 		int nx = scanner.nextInt();
 		int pp = scanner.nextInt();
-		List<List<Cell>> LL = new ArrayList<>(pp);
+		List<List<Integer>> LL = new ArrayList<>(pp);
 		for (int i = 0; i < pp; i++) {
-			LL.add(new ArrayList<Cell>());
+			LL.add(new ArrayList<Integer>());
 		}
-		Cell[][] C = new Cell[ny][nx];
 		int[][] D = new int[ny][nx];
 		for (int y = 0; y < ny; y++) {
 			for (int x = 0; x < nx; x++) {
 				int v = scanner.nextInt() - 1;
-				Cell c = new Cell(x, y);
-				C[y][x] = c;
+				int c = cell(x, y);
+				assert xx(c) == x;
+				assert yy(c) == y;
 				LL.get(v).add(c);
 				D[y][x] = (v == 0) ? x + y : Integer.MAX_VALUE;
 			}
 		}
-		return new Delta(ny, nx, pp, C, D, LL);
+		return new Delta(ny, nx, pp, D, LL);
 	} 
 
 	public static void main(String[] args) {
@@ -114,18 +124,6 @@ public class Delta {
 		System.out.println(o.solve());
 	}
 
-}
-
-class Cell {
-	final int x;
-	final int y;
-	Cell(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-	public String toString() {
-		return String.format("(x=%d, y=%d)", x, y);
-	}	
 }
 
 class FastScanner {
@@ -167,4 +165,3 @@ class FastScanner {
 		}
 	}
 }
-
