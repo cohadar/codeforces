@@ -70,15 +70,15 @@ public class Delta {
 		}
 	}
 
-	static int xx(int cell) {
+	static final int xx(int cell) {
 		return (cell >> 16) & 0xFFFF;
 	}
 
-	static int yy(int cell) {
+	static final int yy(int cell) {
 		return cell & 0xFFFF;
 	}
 
-	static int cell(int x, int y) {
+	static final int cell(int x, int y) {
 		return (x << 16) + y;
 	}
 
