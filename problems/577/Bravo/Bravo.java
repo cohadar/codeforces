@@ -7,19 +7,43 @@ public class Bravo {
 	final int n;
 	final int m;
 	final int[] A;
+	final boolean[][] E;
+	final boolean[][] F;
 	
 	public Bravo(int n, int m, int[] A) {
 		this.n = n;
 		this.m = m;
 		this.A = A;
+		this.E = new boolean[2][m];
+		this.F = new boolean[2][m];
 	}
 
-	public boolean solve(int index, int acc, boolean nonEmpty) {
-		if (index >= n) {
-			return nonEmpty && acc % m == 0;
-		} else {
-			return solve(index + 1, acc + A[index], true) || solve(index + 1, acc, nonEmpty);
+	public int modm(long a, long b) {
+		return (int)((a + b) % m);
+	}
+
+	public boolean ee(int index, int acc) {
+		if (index < 0) {
+			return false;
 		}
+		return E[index%2][acc];
+	}
+
+	public boolean ff(int index, int acc) {
+		if (index < 0) {
+			return acc % m == 0;
+		}
+		return F[index%2][acc];
+	}
+
+	public boolean solve() {
+		for (int y = 0; y < n; y++) {
+			for (int x = 0; x < m; x++) {
+				F[y%2][x] = ff(y-1, modm(x, A[y])) || ff(y-1, x);
+				E[y%2][x] = ff(y-1, modm(x, A[y])) || ee(y-1, x);	
+			}
+		}
+		return E[(n-1)%2][0];
 	}
 
 	public static void main(String[] args) {
@@ -38,7 +62,7 @@ public class Bravo {
 			}
 		}
 		Bravo o = new Bravo(n, m, A);
-		System.out.println((o.solve(0, 0, false)) ? "YES" : "NO");
+		System.out.println((o.solve()) ? "YES" : "NO");
 	}
 
 	static void debug(Object...os) {

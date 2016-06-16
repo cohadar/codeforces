@@ -4,3 +4,7 @@ FIRST: (.java)
 	13m - half paper
 	21m - finished recursive version
 		Time limit exceeded on test 22
+	41m - DP paper
+	51m - Wrong answer on test 5
+	2h16m - Created correct DP from very gradual recursive transformation
+		Time limit exceeded on test 16
