@@ -98,7 +98,7 @@
 
 2016-17-06 | Round #358 | need more DP practice
 	A - slow
-	B - fast
+	B - fast - failed because Arrays.sort uses Quicksort!!!!
 	C - nice graph problem, solid
 	D - complex DP, failed to write correct code
 	E - 

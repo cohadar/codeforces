@@ -4,25 +4,21 @@ import java.io.*;
 /* Mighty Cohadar */
 public class Bravo {
 
-	public static int mex(int[] A) {
-		int j = 1;
-		for (int i = 0; i < A.length; i++) {
-			if (A[i] >= j) {
-				j++;
-			}
-		}
-		return j;
-	}
-
 	public static void main(String[] args) {
 		FastScanner scanner = new FastScanner(System.in);
 		int n = scanner.nextInt();
-		int[] A = new int[n];
-		for (int i = 0; i < A.length; i++) {
-			A[i] = scanner.nextInt();
+		PriorityQueue<Integer> Q = new PriorityQueue<>();
+		for (int i = 0; i < n; i++) {
+			Q.add(scanner.nextInt());
 		}
-		Arrays.sort(A);
-		System.out.println(mex(A));
+		int j = 1;
+		for (int i = 0; i < n; i++) {
+			int a = Q.remove();
+			if (a >= j) {
+				j++;
+			}
+		}
+		System.out.println(j);
 	}
 
 	static void debug(Object...os) {
