@@ -95,3 +95,10 @@
 	C - very nice time
 	D - tried but solution was too slow
 	E - 
+
+2016-17-06 | Round #358 | need more DP practice
+	A - slow
+	B - fast
+	C - nice graph problem, solid
+	D - complex DP, failed to write correct code
+	E - 
