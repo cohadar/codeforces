@@ -1,0 +1,10 @@
+## Charlie
+FIRST: (.java)
+	5m - done reading
+	22m - half paper
+	37m - indexed priority queue with dec/inc priority option.
+	50m - raw array solution
+		Wrong answer on test 3
+	1h - stupid loop variable problem
+		Time limit exceeded on test 44
+	1h10m - accepted

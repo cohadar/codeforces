@@ -1,3 +1,4 @@
+http://codeforces.com/problemset/problem/158/B | great interview question
 http://codeforces.com/problemset/problem/274/A | smarter is simpler
 http://codeforces.com/problemset/problem/276/C | you don't need FenwickTree for this.
 http://codeforces.com/problemset/problem/295/A | great array manipulation practice, invers cumul.
@@ -10,6 +11,7 @@ http://codeforces.com/problemset/problem/466/C | need to be careful with ranges 
 http://codeforces.com/problemset/problem/467/C | nice example of removing DP ifs with proper for bounds
 http://codeforces.com/problemset/problem/474/B | binarySearch - highBound
 http://codeforces.com/problemset/problem/476/B | smarter is simpler
+http://codeforces.com/problemset/problem/501/C | when you think you need a priority queue, but you actually need a simple queue
 http://codeforces.com/problemset/problem/513/A | smarter is simpler
 http://codeforces.com/problemset/problem/518/C | reminds you to use long for sum
 http://codeforces.com/problemset/problem/520/C | nice solution, hard insights
@@ -21,4 +23,3 @@ http://codeforces.com/problemset/problem/602/B | smarter is simpler, two pointer
 http://codeforces.com/problemset/problem/607/A | DP is simpler if you invert min to max
 http://codeforces.com/problemset/problem/652/A | zero case and boundaries nightmare
 http://codeforces.com/problemset/problem/658/C | petite cases disciplines
-http://codeforces.com/problemset/problem/158/B | great interview question
