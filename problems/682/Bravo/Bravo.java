@@ -6,18 +6,66 @@ import java.io.*;
   */
 public class Bravo {
 
-	public static void main(String[] args) throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int n = Integer.valueOf(br.readLine());
-		List<Integer> L = new ArrayList<>();
-		String[] S = br.readLine().split(" ");
-		for (int i = 0; i < n; i++) {
-			L.add(Integer.valueOf(S[i]));
+	static void insertionSort(int[] A, int li, int re) {
+		for (int r = li + 1; r < re; r++) {
+			int val = A[r];
+			int l = r;
+			while (li < l && A[l-1] > val) {
+				A[l] = A[l-1];
+				l--;
+			}
+			A[l] = val;
 		}
-		Collections.sort(L);
+	}
+	
+	static void merge(int[] A, int[] B, int li, int mi, int re) {
+		int l = li;
+		int r = mi;
+		int j = li;
+		while (l < mi && r < re) {
+			if (A[l] <= A[r]) {
+				B[j++] = A[l++];
+			} else {
+				B[j++] = A[r++];
+			}
+		}
+		while (l < mi) {
+			B[j++] = A[l++];
+		}
+		for (int i = li; i < j; i++) {
+			A[i] = B[i];
+		}
+	}
+	
+	static void mergeSort(int[] A, int[] B, int li, int re) {
+		if (li >= re) {
+			return;
+		}
+		if (re - li <= 10) {
+			insertionSort(A, li, re);
+		} else {
+			int mi = (li + re) >>> 1;
+			mergeSort(A, B, li, mi);
+			mergeSort(A, B, mi, re);
+			merge(A, B, li, mi, re);
+		}
+	}
+	
+	static void mergeSort(int[] A, int li, int re) {
+		mergeSort(A, new int[A.length], li, re);
+	}
+
+	public static void main(String[] args) throws Exception {
+		FastScanner scanner = new FastScanner(System.in);
+		int n = scanner.nextInt();
+		int[] A = new int[n];
+		for (int i = 0; i < A.length; i++) {
+			A[i] = scanner.nextInt();
+		}
+		mergeSort(A, 0, A.length);
 		int j = 1;
-		for (int a : L) {
-			if (j <= a) {
+		for (int i = 0; i < A.length; i++) {
+			if (A[i] >= j) {
 				j++;
 			}
 		}
@@ -25,7 +73,6 @@ public class Bravo {
 	}
 
 }
-
 
 class FastScanner {
 	private final BufferedReader in;
