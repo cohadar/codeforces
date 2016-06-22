@@ -17,6 +17,7 @@ http://codeforces.com/problemset/problem/518/C | reminds you to use long for sum
 http://codeforces.com/problemset/problem/520/C | nice solution, hard insights
 http://codeforces.com/problemset/problem/534/B | tricky DP with both start and end conditions
 http://codeforces.com/problemset/problem/538/C | index/range manipulation
+http://codeforces.com/problemset/problem/550/B | nice brute bit
 http://codeforces.com/problemset/problem/570/C | makes you think you need interval tree, but no.
 http://codeforces.com/problemset/problem/597/A | great interview question
 http://codeforces.com/problemset/problem/602/B | smarter is simpler, two pointers, use range arithmetic
