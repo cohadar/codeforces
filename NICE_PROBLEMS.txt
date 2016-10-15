@@ -1,4 +1,4 @@
-http://codeforces.com/problemset/problem/158/B | great interview question
+http://codeforces.com/problemset/problem/158/B | great interview question - simple for and if's ~ 20m
 http://codeforces.com/problemset/problem/274/A | smarter is simpler
 http://codeforces.com/problemset/problem/276/C | you don't need FenwickTree for this.
 http://codeforces.com/problemset/problem/295/A | great array manipulation practice, invers cumul.
