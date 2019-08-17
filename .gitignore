@@ -14,3 +14,6 @@ hs_err_pid*
 
 # my build system specific
 *.actual
+
+# python specific
+__pycache__/
