@@ -1,2 +1,2 @@
-x = input()
-print ['YES', 'NO'][x%2 or x==2]
+x = int(input())
+print('YES') if x % 2 == 0 and x > 2 else print('NO')
